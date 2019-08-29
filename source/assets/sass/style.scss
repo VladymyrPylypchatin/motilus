@@ -30,17 +30,17 @@ body{
     box-shadow: 0 9px 20px -5px rgba(0,0,0,.15), inset 0 -1px 0 rgba(0,0,0,.05);
     transition: all 500ms ease-in-out;
     cursor: pointer;
-    background: #ff174b;
+    background: rgba(0, 13, 255, 1);
     color: white;
     font-family: 'Avenir LT Std';
     font-size: 18px;
     user-select: none;
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: auto; 
 }
 
 .booking-system__button:hover{
-    background: #c3002c;
+    background: rgb(1, 11, 197);
 }
 .booking-system__button.hidden{
     transform: translateY(100vh);

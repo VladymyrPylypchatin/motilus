@@ -55,7 +55,7 @@ body {
   -o-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
   cursor: pointer;
-  background: #ff174b;
+  background: #000dff;
   color: white;
   font-family: 'Avenir LT Std';
   font-size: 18px;
@@ -67,7 +67,7 @@ body {
   pointer-events: auto; }
 
 .booking-system__button:hover {
-  background: #c3002c; }
+  background: #010bc5; }
 
 .booking-system__button.hidden {
   -webkit-transform: translateY(100vh);

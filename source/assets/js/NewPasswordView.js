@@ -11,8 +11,11 @@ class NewPasswordView{
         this._password = this._registrationForm.querySelector("input[name=password]").value;
     }
     validateForm(){
-        if(!Validator.isFiled(this._password)) this._errors.push("Password is empty");
-        if(!Validator.minLength(this._password, 5)) this._errors.push("Min password length is 5 charectes");
+        if(!Validator.isFiled(this._password)){
+            this._errors.push("Please enter a password");
+        } else {
+            if(!Validator.minLength(this._password, 5)) this._errors.push("Password must be at least 5 characters");
+        } 
         return this._errors.length == 0;
     }
     clearInputs(){

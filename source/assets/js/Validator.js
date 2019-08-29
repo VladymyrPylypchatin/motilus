@@ -74,4 +74,54 @@ class Validator{
         
         // return false;
     }
+
+    static async validateAddress(address){
+        Messanger.sendMessage("validateAddress", {address});
+        return new Promise((resolve, reject) => {
+            window.addEventListener("message", async function handler(event){
+                try{
+                    if(event.data != null){
+                        let data = JSON.parse(event.data, JSON.dateParser);
+                        switch(data.action){                      
+                            case "validateAddress":
+                                let result = data.data.result;
+                                window.removeEventListener("message", handler);
+                                resolve(result);
+                            break;
+                        }
+                    }
+                } 
+                catch(e){
+                    // console.log("wrong message");
+                }
+            });
+        });
+        
+        // return false;
+    }
+
+    static async validateGeofencing(address){
+        Messanger.sendMessage("validateGeofencing", {address});
+        return new Promise((resolve, reject) => {
+            window.addEventListener("message", async function handler(event){
+                try{
+                    if(event.data != null){
+                        let data = JSON.parse(event.data, JSON.dateParser);
+                        switch(data.action){                      
+                            case "validateGeofencing":
+                                let result = data.data.result;
+                                window.removeEventListener("message", handler);
+                                resolve(result);
+                            break;
+                        }
+                    }
+                } 
+                catch(e){
+                    // console.log("wrong message");
+                }
+            });
+        });
+        
+        // return false;
+    }
 }

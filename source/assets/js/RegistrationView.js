@@ -46,9 +46,22 @@ class RegistrationView{
             if(!Validator.validatePhoneNumber(this._phone)) errors.push("Please check your phone number");
         }
 
+        //Validation address parts
         if(!Validator.isFiled(this._address)) errors.push("Please enter your Address");
         if(!Validator.isFiled(this._city)) errors.push("Please enter your city");
         if(!Validator.isFiled(this._state)) errors.push("Please enter your State");
+
+        //Validation of whole address
+        if(Validator.isFiled(this._address) && Validator.isFiled(this._city) && Validator.isFiled(this._state)){
+            if(!await Validator.validateAddress(this._address + " " + this._city + " " + this._state)){
+                errors.push("Please check your address. It is incorrect or not accurate enough.");
+            } else {
+                if(!await Validator.validateGeofencing(this._address + " " + this._city + " " + this._state)){
+                    errors.push("BIG FAT ERROR!!!!!!!!");
+                }
+            }
+        }
+
 
         if(!await Validator.checkUniqueEmail(this._email)) errors.push("A user with the email already exists. Please log in or register with a different email address.");
         if(!await Validator.checkUniquePhone(this._phone)) errors.push("A user with the phone already exists. Please log in or register with a different email address.");

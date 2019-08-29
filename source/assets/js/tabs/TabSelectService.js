@@ -22,6 +22,20 @@ class TabSelectService extends Tab{
                             this._service.renderServiceList();
                             this._bookingViewAPI.hideLodaer();
                         break;
+
+                        case "asap_booking":
+                            //If ASAP Booking then calendar tab is skiped
+                            console.dir("ASAP booking");
+                            console.log("User Auth");
+                            console.log(this._bookingViewAPI._userAuthorized);
+                            await this._bookingViewAPI.finishLoading();
+
+                            if(this._bookingViewAPI._userAuthorized){
+                                this._bookingViewAPI.jumpToSlide(5);
+                            } else {
+                                this._bookingViewAPI.jumpToSlide(2);
+                            }
+                        break;
                     }
                 }
             } 
