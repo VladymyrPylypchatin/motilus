@@ -5,7 +5,7 @@ header("Pragma: no-cache");
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/main.css?v=2">
 
 <div class="booking-system">
     <div class="booking-system__header">
@@ -181,6 +181,11 @@ header("Pragma: no-cache");
                                 <div class="cutom-input__icon"></div>
                                 <input type="text" name="state" tabindex="-1" placeholder="State">
                             </div>
+                            <div class="custom-input">
+                                <div class="cutom-input__icon"></div>
+                                <input type="text" name="zipcode" tabindex="-1" placeholder="ZIP Code">
+                            </div>
+                           
                         </form>
                     </div>
                 </div>
@@ -318,7 +323,7 @@ header("Pragma: no-cache");
 </div>
 
 <script id="stripe" src="https://js.stripe.com/v3/"></script>
-<script src="assets/js/main.min.js"></script>
+<script src="assets/js/main.min.js?v=2"></script>
 
 <script>
     // document.addEventListener('keydown', (event) => {

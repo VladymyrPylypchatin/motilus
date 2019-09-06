@@ -3,7 +3,7 @@ class AddCardView{
         // this._tabAPI
         this._from = document.getElementById('payment-form');
         try{
-            this._stripe = Stripe('pk_test_kr6wwGYSfs7TOIBCawfayg7Z00Fl5ItOJJ');
+            this._stripe = Stripe('pk_live_lZrU6djcfBFM1EDTQzUVY03W00v8chGiIb');
             this._elements = this._stripe.elements();
             this._card = this._elements.create('card', {
                 base: {

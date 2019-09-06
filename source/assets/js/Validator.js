@@ -124,4 +124,11 @@ class Validator{
         
         // return false;
     }
+
+    static validateZipCode(zipCode){
+        if(isNaN(parseInt(zipCode, 10))) return false;
+        if(parseInt(zipCode, 10).toString().length != 5) return false;
+
+        return true;
+    }
 }
