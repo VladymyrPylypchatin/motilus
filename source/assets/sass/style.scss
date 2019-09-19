@@ -679,6 +679,24 @@ body{
 }
 /* Booking status error end */
 
+/* Booking status success */
+.booking-status.success .booking-status__image{
+    border: 1px solid #12dcb0;
+    color: #12dcb0;
+}
+
+.booking-status.success .content svg{
+    fill: #12dcb0;
+    color: #12dcb0;
+    height: 50px;
+    width: 50px;
+}
+.booking-status.success .booking-status__header{
+    color: #12dcb0;
+}
+
+/* Booking status success end */
+
 
 .booking-systme__loader{
     

@@ -3,9 +3,10 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 ?>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="assets/css/main.css?v=2">
+<link rel="stylesheet" href="assets/css/main.css?v=6">
 
 <div class="booking-system">
     <div class="booking-system__header">
@@ -278,6 +279,7 @@ header("Pragma: no-cache");
                         <div class="booking-status__text">Please wait while we confirm your booking information</div>
                     </div>
                 </div>
+                <div id="back-to-home-btn" class="booking-system__button next-button hidden">Back to the home page</div>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="login">
@@ -323,7 +325,7 @@ header("Pragma: no-cache");
 </div>
 
 <script id="stripe" src="https://js.stripe.com/v3/"></script>
-<script src="assets/js/main.min.js?v=2"></script>
+<script src="assets/js/main.min.js?v=9"></script>
 
 <script>
     // document.addEventListener('keydown', (event) => {

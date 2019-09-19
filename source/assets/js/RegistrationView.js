@@ -92,8 +92,9 @@ class RegistrationView{
         return {
             name: this._name,
             email: this._email,
-            phone: this._phone,
+            phone: this._phone.replace(/[)(\- ]+/, ""),
             address: this._address,
+            zip: this._zip,
             city: this._city,
             state: this._state,
         };

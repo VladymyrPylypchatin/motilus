@@ -52,6 +52,8 @@ class CalendarView{
     }
 
     renderTimeSlots(){
+        console.log('Avalible Time');
+        console.log(this._avalibleTimeSlots);
         console.log(213);
         this.stopPreloader();
         this._timeSlotContainerMorning.innerHTML = "";
@@ -65,7 +67,7 @@ class CalendarView{
         
         let counter = 0;
         this._avalibleTimeSlots.forEach((element) =>{
-            if(element.timeSpan > currentDate){
+            if(element.timeSpan > new Date(currentDate.getTime() + 30*60000)){ //check if timeslot is greater than current time + 30 mins
                 counter++;
                 let timeSlot = document.createElement("div");
                 timeSlot.classList.add("calendar__timeslot");
@@ -75,7 +77,7 @@ class CalendarView{
                 timeSlot.addEventListener("click", self.selectTimeSlot.bind(self));
                 
                 console.log(element.timeSpan.getHours());
-                if(element.timeSpan.getHours() < 12){
+                if(element.timeSpan.getHours() < 12 && element.timeSpan.getHours() != 0){
                     this._timeSlotContainerMorning.appendChild(timeSlot);
                 }
                 if(element.timeSpan.getHours() >= 12 && element.timeSpan.getHours() <= 17){
