@@ -50,7 +50,7 @@ class TabCalendar extends Tab{
             this.disableButton();
 
             if(this._bookingViewAPI._userAuthorized){
-                this._bookingViewAPI.jumpToSlide(5);
+                this._bookingViewAPI.jumpToSlide(6);
             } else {
                 this._bookingViewAPI.slideNext();
             }

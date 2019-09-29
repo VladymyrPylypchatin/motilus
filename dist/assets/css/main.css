@@ -855,6 +855,55 @@ body {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%); } }
 
+.time-picker {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-bottom: 40px; }
+  .time-picker__section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+  .time-picker__number {
+    font-size: 65px;
+    color: #988e8e; }
+  .time-picker__colon {
+    font-size: 65px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-bottom: 15px;
+    margin: 0 10px;
+    color: #322c2c; }
+  .time-picker__controll {
+    height: 25px;
+    width: 25px;
+    cursor: pointer; }
+    .time-picker__controll svg {
+      fill: #d4caca;
+      height: 100%;
+      width: 100%; }
+
 @media (max-width: 480px) {
   .booking-system {
     width: 100%;

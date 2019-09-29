@@ -2,7 +2,8 @@ class TabBookingStaus extends Tab{
     constructor(id, title, BookingViewAPI){
         super(id, title, BookingViewAPI);
         this._data = null;
-        this._bookingStausView = new BookingStausView(".booking-status");
+        this._bookingStausView = new BookingStausView(".booking-status", this);
+        this._finalActionStatus = true;
     }
     run(){
         Messanger.sendMessage("finishBooking", {});
@@ -26,7 +27,10 @@ class TabBookingStaus extends Tab{
     }
 
     actionButtonHandler(){
-        
+        if(this._finalActionStatus){
+            Messanger.sendMessage('finalAction', {});
+            this._finalActionStatus = false;
+        }
     }
 }
 

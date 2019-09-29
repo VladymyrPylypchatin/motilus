@@ -15,7 +15,7 @@ class TabLogin extends Tab{
                     switch(this._data.action){                      
                         case "userAccessAlowed":
                             await this._bookingViewAPI.finishLoading();
-                            this._bookingViewAPI.jumpToSlide(6);
+                            this._bookingViewAPI.jumpToSlide(7);
                         break;
                         case "userAccessDenied":
                             this.enableButton()
@@ -37,7 +37,7 @@ class TabLogin extends Tab{
     navigationHandler(){
         if(this._bookingViewAPI._status == "ready"){
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpBackToSlide(2);
+            this._bookingViewAPI.jumpBackToSlide(3);
         }
     }
     actionButtonHandler(){

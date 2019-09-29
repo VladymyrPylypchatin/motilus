@@ -56,8 +56,9 @@ class TabSelectService extends Tab{
     
     preSelectService(){
         let serviceName = this._service._serviceList[0].serviceName;
-        this._bookingViewAPI.requestSlideNext();
-        Messanger.sendMessage("selectService", {serviceName});
+        this._bookingViewAPI.slideNext(serviceName);
+        // this._bookingViewAPI.requestSlideNext();
+        // Messanger.sendMessage("selectService", {serviceName});
     }
   
     run(){

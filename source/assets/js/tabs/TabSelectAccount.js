@@ -13,7 +13,7 @@ class TabSelectAccount extends Tab{
                     switch(this._data.action){                      
 			case "customerIsRepeated":
 				console.dir("Confirmed customer is Repeated");
-				this._bookingViewAPI.jumpToSlide(6);
+				this._bookingViewAPI.jumpToSlide(7);
 			break;
                     }
                 }
@@ -25,7 +25,7 @@ class TabSelectAccount extends Tab{
 
     senodaryButtonHandler(){
         this.disableButton();
-        this._bookingViewAPI.jumpToSlide(2);
+        this._bookingViewAPI.jumpToSlide(3);
     }
     actionButtonHandler(){
         console.dir("234234");

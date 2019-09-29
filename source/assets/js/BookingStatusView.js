@@ -1,5 +1,6 @@
 class BookingStausView{
-    constructor(bookinStatusSelector){
+    constructor(bookinStatusSelector, tabAPI){
+        this._tabAPI = tabAPI;
         this._data = null;
         this._fired = false;
         this._status = null;
@@ -7,6 +8,7 @@ class BookingStausView{
         this._image = this._bookingStatusBox.querySelector(".booking-status__image .content");
         this._header = this._bookingStatusBox.querySelector(".booking-status__header");
         this._text = this._bookingStatusBox.querySelector(".booking-status__text");
+        // this._getBackBtn = document.querySelector('#back-to-home-btn');
     }
     
     async countDown(){
@@ -30,6 +32,7 @@ class BookingStausView{
         if(this._status == "success") this.bookingConfirmed();
         if(this._status == "success_asap") this.bookingConfirmedASAP();
         if(this._status == "error") this.bookingRejected();
+        this._tabAPI.showButton(); 
     }
 
     bookingConfirmed(){

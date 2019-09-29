@@ -56,6 +56,7 @@ gulp.task('scripts', function () {
         'source/assets/js/AddCardView.js',
         'source/assets/js/LoginView.js',
         'source/assets/js/BookingStatusView.js',
+        'source/assets/js/TimePickerView.js',
         'source/assets/js/Tab.js',
         'source/assets/js/tabs/TabSelectService.js',
         'source/assets/js/tabs/TabCalendar.js',
@@ -66,6 +67,7 @@ gulp.task('scripts', function () {
         'source/assets/js/tabs/TabSelectAccount.js',
         'source/assets/js/tabs/TabLogin.js',
         'source/assets/js/tabs/TabError.js',
+        'source/assets/js/tabs/TabServiceDuration.js',
         'source/assets/js/BookingView.js',
         'source/assets/js/main.js'
     ])

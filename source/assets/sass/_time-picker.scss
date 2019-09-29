@@ -1,0 +1,37 @@
+.time-picker {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    user-select:none;
+    margin-bottom: 40px;
+    &__section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+    &__number{
+        font-size: 65px;
+        color: #988e8e;
+    }
+    &__colon{
+        font-size: 65px;
+        display: flex;
+        align-items: center;
+        padding-bottom: 15px;
+        margin: 0 10px;
+        color: #322c2c;
+    }
+
+    &__controll{
+        height: 25px;
+        width: 25px;
+        cursor: pointer;
+        
+        svg{
+            fill: #d4caca;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

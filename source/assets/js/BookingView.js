@@ -5,6 +5,7 @@ class BookingView{
         this._userAuthorized = false;
         this._tabList = [
             new TabSelectService("select-service", "Book Online", this),
+            new TabServiceDuration("chose-duration", "SERVICE DURATION", this),
             new TabCalendar("chose-datetime", "CHOSE DATE & TIME", this),
             new TabCustomerInfo("customer-info", "CUSTOMER INFORMATION", this),
             new TabNewPassword("new-password", "New Password", this),
@@ -58,7 +59,7 @@ class BookingView{
         }
     }
     
-    async slideNext(){
+    async slideNext(params){
         //End loading animation
         await this.finishLoading();
 
@@ -74,7 +75,7 @@ class BookingView{
         
         this.updateTitle();
         this._status = "ready"
-        this._activeTab.run();
+        this._activeTab.run(params);
 
         // console.dir(this._activeTab);
         // console.dir(this);

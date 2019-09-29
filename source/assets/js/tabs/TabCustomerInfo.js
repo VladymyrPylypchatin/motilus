@@ -29,7 +29,7 @@ class TabCustomerInfo extends Tab{
     navigationHandler(){
         if(this._bookingViewAPI._status == "ready"){
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpToSlide(7);
+            this._bookingViewAPI.jumpToSlide(8);
         }
     }
     async actionButtonHandler(){
