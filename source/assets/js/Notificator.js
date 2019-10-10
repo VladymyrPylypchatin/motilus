@@ -10,6 +10,7 @@ class Notificator{
     }
 
     activate(){
+        Messanger.sendMessage("notificationActivated", {});
         this._notificatonBox.classList.add("active");
     }
     diactivate(){

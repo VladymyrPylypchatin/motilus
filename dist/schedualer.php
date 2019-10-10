@@ -6,7 +6,7 @@ header("Pragma: no-cache");
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="assets/css/main.css?v=7">
+<link rel="stylesheet" href="assets/css/main.css?v=18">
 <body>
 <div class="booking-system">
     <div class="booking-system__header">
@@ -27,7 +27,7 @@ header("Pragma: no-cache");
             </div>
         </div>
       
-        <div class="tab isInactive isRHS scrollable" id="select-service">
+        <div class="tab isActive scrollable" id="select-service">
             <div class="tab__body">
                 <div class="tab__inner-body">
                     <div class="service-list">
@@ -42,20 +42,6 @@ header("Pragma: no-cache");
                     </div>
                 </div>
                 <!-- <div id="continue-service-select-btn" class="booking-system__button next-button hidden">Continue</div> -->
-            </div>
-        </div>
-        <div class="tab isActive " id="select-address"> 
-            <div class="tab__body justify">
-                <div class="tab__inner-body">
-                <div class="customer-info">
-                        <div class="customer-info__navigation info-box">
-                                <div class="navigation-item active">My adresses</div>
-                                <div id="nav-login" class="navigation-item">Add new</div>
-                        
-                        </div>
-                    </div>
-                </div>
-                <div id="" class="booking-system__button next-button ">Book Now</div>
             </div>
         </div>
         <div class="tab isInactive isRHS " id="chose-duration"> 
@@ -252,6 +238,11 @@ header("Pragma: no-cache");
                                 <div class="cutom-input__icon"></div>
                                 <input type="password" tabindex="-1" name="password" placeholder="New password">
                             </div>
+                            
+                            <div class="custom-checkbox">
+                                <input id="terms-of-service" type="checkbox" name="acceptterms" value="1">
+                                <label for="terms-of-service">I agree to Motil's <a href="https://www.motil.us/terms-of-service" target="_blank">Terms of Service</a></label>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -271,6 +262,7 @@ header("Pragma: no-cache");
                             </div>
                         </div>
                         <div class="tab__strong-text">Credit or debit card</div>
+                 
                         <form action="/charge" method="post" id="payment-form">
                             <div class="form-row">
                               <!-- <label for="card-element" display="none">
@@ -279,7 +271,24 @@ header("Pragma: no-cache");
                               <div id="card-element">
                                 <!-- A Stripe Element will be inserted here. -->
                               </div>
-                          
+                                <div class="cards-list">
+                                    <div class="cards-list__item">
+                                        <img src="assets/img/visa.webp" alt="credit card">
+                                    </div>
+                                    <div class="cards-list__item">
+                                        <img src="assets/img/mastercard.webp" alt="credit card">
+                                    </div>
+                                    <div class="cards-list__item">
+                                        <img src="assets/img/americanexpress.webp" alt="credit card">
+                                    </div>
+                                    <div class="cards-list__item">
+                                        <img src="assets/img/orange.webp" alt="credit card">
+                                    </div>
+                                </div>
+                                <div class="powered-by-stripe">
+                            <img src="assets/img/powered_by_stripe.svg" alt="">
+                        </div>
+                                
                               <!-- Used to display form errors. -->
                               <div id="card-errors" role="alert"></div>
                             </div>
@@ -363,11 +372,60 @@ header("Pragma: no-cache");
                 </div>
             </div>
         </div>
+        <div class="tab isInactive isRHS" id="select-address"> 
+            <div class="tab__body justify">
+                <div class="tab__inner-body">
+                    <div class="info-box">
+                        <div class="navigation-item active">My adresses</div>
+                        <div id="nav-add-address" class="navigation-item">Add new</div>
+                    </div>
+                    <div class="boxes-list addresses-list">
+                        <!-- <div class="boxes-list__item address-box address-box__active">
+                            <div class="address-box__first-line">Coconut Grove Apt 24</div>
+                            <div class="address-box__second-line">Miami, Florida 33105</div>
+                        </div> -->
+                
+                    </div>
+                </div>
+                <div id="" class="booking-system__button next-button hidden">Book Now</div>
+            </div>
+        </div>
+        <div class="tab isInactive isRHS" id="add-address">
+            <div class="tab__body">
+                <div class="tab__inner-body">
+                    <div class="customer-info">
+                        <div class="customer-info__navigation info-box">
+                            <div id="nav-my-address" class="navigation-item">My adresses</div>
+                            <div class="navigation-item active">Add new</div>
+                        </div>
+                        <form id="add-address-form" class="not-action">
+                            <div class="custom-input">
+                                <div class="cutom-input__icon"></div>
+                                <input type="text" name="address" tabindex="-1" placeholder="Address">
+                            </div>
+                            <div class="custom-input">
+                                <div class="cutom-input__icon"></div>
+                                <input type="text" name="city" tabindex="-1" placeholder="City">
+                            </div>
+                            <div class="custom-input">
+                                <div class="cutom-input__icon"></div>
+                                <input type="text" name="state" tabindex="-1" placeholder="State">
+                            </div>
+                            <div class="custom-input">
+                                <div class="cutom-input__icon"></div>
+                                <input type="text" name="zipcode" tabindex="-1" placeholder="ZIP Code">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="add-address-btn" class="booking-system__button next-button">Add new address</div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script id="stripe" src="https://js.stripe.com/v3/"></script>
-<script src="assets/js/main.min.js?v=14"></script> 
+<script src="assets/js/main.min.js?v=27"></script> 
  
 <script>  
     // document.addEventListener('keydown', (event) => {

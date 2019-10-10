@@ -5,9 +5,14 @@ class TabLogin extends Tab{
         this._loginView = new LoginView("#login-form", BookingViewAPI);
         this._navCreateAccount = this._tab.querySelector("#nav-create-account");
         this._navCreateAccount.addEventListener("click", this.navigationHandler.bind(this));
-        
+        this._listenActivated = false;
+
     }
     run(){
+      if(!this._listenActivated) this.listen();
+    }
+
+    listen() {
         window.addEventListener("message", async (event) => {
             try{
                 if(event.data != null){
@@ -15,7 +20,8 @@ class TabLogin extends Tab{
                     switch(this._data.action){                      
                         case "userAccessAlowed":
                             await this._bookingViewAPI.finishLoading();
-                            this._bookingViewAPI.jumpToSlide(7);
+                            this._bookingViewAPI.jumpToSlide(10);
+                            // this._bookingViewAPI.jumpToSlide(7);
                         break;
                         case "userAccessDenied":
                             this.enableButton()
@@ -32,6 +38,7 @@ class TabLogin extends Tab{
             catch(e){
             }
         });
+        this._listenActivated = true;
     }
 
     navigationHandler(){

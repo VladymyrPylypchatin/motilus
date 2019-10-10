@@ -50,6 +50,7 @@ gulp.task('scripts', function () {
         'source/assets/js/Notificator.js',
         'source/assets/js/Validator.js',
         'source/assets/js/ServiceView.js',
+        'source/assets/js/SelectAddressView.js',
         'source/assets/js/CalendarView.js',
         'source/assets/js/RegistrationView.js',
         'source/assets/js/NewPasswordView.js',
@@ -57,6 +58,7 @@ gulp.task('scripts', function () {
         'source/assets/js/LoginView.js',
         'source/assets/js/BookingStatusView.js',
         'source/assets/js/TimePickerView.js',
+        'source/assets/js/AddAddressView.js',
         'source/assets/js/Tab.js',
         'source/assets/js/tabs/TabSelectService.js',
         'source/assets/js/tabs/TabCalendar.js',
@@ -65,9 +67,11 @@ gulp.task('scripts', function () {
         'source/assets/js/tabs/TabAddCard.js',
         'source/assets/js/tabs/TabBookingStatus.js',
         'source/assets/js/tabs/TabSelectAccount.js',
+        'source/assets/js/tabs/TabSelectAddress.js',
         'source/assets/js/tabs/TabLogin.js',
         'source/assets/js/tabs/TabError.js',
         'source/assets/js/tabs/TabServiceDuration.js',
+        'source/assets/js/tabs/TabAddAddress.js',
         'source/assets/js/BookingView.js',
         'source/assets/js/main.js'
     ])

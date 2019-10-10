@@ -9,11 +9,13 @@ class BookingView{
             new TabCalendar("chose-datetime", "CHOSE DATE & TIME", this),
             new TabCustomerInfo("customer-info", "CUSTOMER INFORMATION", this),
             new TabNewPassword("new-password", "New Password", this),
-            new TabAddCard("add-card", "Payment Method", this),
+            new TabAddCard("add-card", "Payment Method", this), //add card
             new TabSelectAccount("select-account", "Select Account", this),
             new TabBookingStaus("booking-status", "Booking Status", this),
             new TabLogin("login", "Login", this),
-            new TabError("booking-error", "Booking Status", this)
+            new TabError("booking-error", "Booking Status", this),
+            new TabSelectAddress("select-address", "Select adress for service", this),
+            new TabAddAddress("add-address", "Add new address for service", this),
         ];
         this._activeTabIndex = 0;
         this._activeTab = this._tabList[0];
@@ -147,7 +149,7 @@ class BookingView{
 
                         case "userIsAuthorized":
                             this._userAuthorized = true; 
-                            this._tabList[5].setUser(this._data.data);   
+                            this._tabList[6].setUser(this._data.data);   
                             console.log("User is Authorized");
                         break;
 

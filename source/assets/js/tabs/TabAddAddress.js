@@ -1,54 +1,52 @@
 
-class TabCustomerInfo extends Tab{
-    constructor(id, title, BookingViewAPI){
+class TabAddAddress extends Tab {
+    constructor(id, title, BookingViewAPI) {
         super(id, title, BookingViewAPI);
         this._data = null;
-        this._registrationView = new RegistrationView("#registration-form", this);
-        this._navLogin = this._tab.querySelector("#nav-login");
-        this._navLogin.addEventListener("click", this.navigationHandler.bind(this));
-        this._listenActivated = false;
+        this._registrationView = new AddAddressView("#add-address-form", this);
+        this._nav = this._tab.querySelector("#nav-my-address");
+        this._nav.addEventListener("click", this.navigationHandler.bind(this));
+        this._listenerActivated = false;
     }
-    run(){
-        console.dir("TabCallendar");
-        if(!this._listenActivated) this.listen();
+    run() {
+        if(!this._listenerActivated) this.listen();
     }
 
     listen() {
         window.addEventListener("message", async (event) => {
-            try{
-                if(event.data != null){
+            try {
+                if (event.data != null) {
                     this._data = JSON.parse(event.data, JSON.dateParser);
-                    switch(this._data.action){                      
-                        case "userInfoSeted":
-                            this._bookingViewAPI.slideNext(); 
-                        break;
+                    switch (this._data.action) {
+                        case "addressSaved":
+                            this._bookingViewAPI.jumpBackToSlide(10);
+                            break;
                     }
                 }
-            } 
-            catch(e){
+            }
+            catch (e) {
                 // console.log("wrong message");
             }
         });
-        this._listenActivated = true;
+        this._listenerActivated = true;
     }
 
-    navigationHandler(){
-        if(this._bookingViewAPI._status == "ready"){
+    navigationHandler() {
+        if (this._bookingViewAPI._status == "ready") {
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpToSlide(8);
+            this._bookingViewAPI.jumpBackToSlide(10);
         }
     }
-    async actionButtonHandler(){
-        if(this._bookingViewAPI._status == "ready"){
+    async actionButtonHandler() {
+        if (this._bookingViewAPI._status == "ready") {
             this.disableButton();
             this._registrationView.getData();
 
-            if(await this._registrationView.validateForm()){
+            if (await this._registrationView.validateForm()) {
                 this._bookingViewAPI.startLoading();
                 this._bookingViewAPI._status = "proccesing"
+                Messanger.sendMessage("addUserAddress", this._registrationView.getUserInfoObject());
 
-                // this._registrationView.clearInputs();
-                this._registrationView.createUser();
             } else {
                 this._bookingViewAPI._status = "proccesing"
                 await this._bookingViewAPI._notificator.erraseErorr(this._registrationView._errors);
@@ -63,7 +61,7 @@ class TabCustomerInfo extends Tab{
 if (window.JSON && !window.JSON.dateParser) {
     var reISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
     var reMsAjax = /^\/Date\((d|-|.*)\)[\/|\\]$/;
-   
+
     JSON.dateParser = function (key, value) {
         if (typeof value === 'string') {
             var a = reISO.exec(value);

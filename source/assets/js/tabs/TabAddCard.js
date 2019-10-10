@@ -14,7 +14,7 @@ class TabAddCard extends Tab{
                     this._data = JSON.parse(event.data, JSON.dateParser);
                     switch(this._data.action){                      
                         case "creditCardAdded":
-                            this._bookingViewAPI.jumpToSlide(6);
+                            this._bookingViewAPI.jumpToSlide(7);
                         break;
                     }
                 }
