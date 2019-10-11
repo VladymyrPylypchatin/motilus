@@ -20,6 +20,7 @@ class SelectAddressView {
         let addressElem = document.createElement("div");
         addressElem.classList.add("boxes-list__item");
         addressElem.classList.add("address-box");
+        addressElem.classList.add("tabable");
         addressElem.setAttribute("data-address", id);
         addressElem.innerHTML = `
         <div class="address-box__first-line">${address.address}</div>

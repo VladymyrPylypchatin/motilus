@@ -51,9 +51,9 @@ body {
   font-weight: 500;
   -webkit-box-shadow: 0 9px 20px -5px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 0 9px 20px -5px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-  -webkit-transition: all 500ms ease-in-out;
-  -o-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
+  -webkit-transition: all 250ms ease-in-out;
+  -o-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
   cursor: pointer;
   background: #000dff;
   color: white;
@@ -64,10 +64,13 @@ body {
       -ms-user-select: none;
           user-select: none;
   opacity: 1;
-  pointer-events: auto; }
+  pointer-events: auto;
+  border: none; }
 
-.booking-system__button:hover {
-  background: #010bc5; }
+.booking-system__button:hover, .booking-system__button:focus {
+  background: #0109a3;
+  -webkit-box-shadow: 0 12px 25px -2px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 12px 25px -2px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.05); }
 
 .booking-system__button.hidden {
   -webkit-transform: translateY(100vh);
@@ -95,6 +98,7 @@ body {
   border-radius: 100px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: #757575;
+  background: white;
   margin-top: 0;
   margin-top: 20px;
   letter-spacing: 1px;
@@ -518,6 +522,8 @@ body {
   text-align: left; }
 
 .navigation-item {
+  display: block;
+  text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 700;

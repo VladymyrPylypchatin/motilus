@@ -69,7 +69,7 @@ header("Pragma: no-cache");
                         </div>
                     </div>
                 </div>
-                <div id="" class="booking-system__button next-button ">Book Now</div>
+                <button id="" class="booking-system__button next-button ">Book Now</button>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="chose-datetime">
@@ -83,7 +83,7 @@ header("Pragma: no-cache");
                                 <span class="week-end">30 JUN</span>
                             </div>
                             <div class="calendar__week-controlls">
-                                <div class="prev-week controlls">
+                                <div class="prev-week controlls tabable">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                         <g>
@@ -92,7 +92,7 @@ header("Pragma: no-cache");
                                         </g>
                                     </svg>
                                 </div>
-                                <div class="next-week controlls">
+                                <div class="next-week controlls tabable">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
                                         <g>
@@ -139,7 +139,7 @@ header("Pragma: no-cache");
                         </div>
                         <div class="callendar__selected-time info-box hidden">
                             <div class="time">Morning 8:30 am</div>
-                            <div class="change">Change</div>
+                            <div class="change tabable">Change</div>
                         </div>
                         <div class="calendar__avalible-timeslots">
                             <div class="calendar__timslot-container morning">
@@ -174,16 +174,16 @@ header("Pragma: no-cache");
                         </div>
                     </div>
                 </div>
-                <div id="continue-service-select-btn" class="booking-system__button next-button hidden">Book Now</div>
+                <button id="continue-service-select-btn" class="booking-system__button next-button hidden">Book Now</button>
             </div>
         </div>
-        <div class="tab isInactive isRHS" id="customer-info">
+        <div class="tab isActive" id="customer-info">
             <div class="tab__body">
                 <div class="tab__inner-body">
                     <div class="customer-info">
                         <div class="customer-info__navigation info-box">
-                            <div class="navigation-item active">Your Details</div>
-                            <div id="nav-login" class="navigation-item">Login</div>
+                            <a class="navigation-item active">Your Details</a>
+                            <a id="nav-login" class="navigation-item">Login</a>
                         </div>
                         <form id="registration-form" class="not-action">
                             <div class="custom-input">
@@ -218,7 +218,7 @@ header("Pragma: no-cache");
                         </form>
                     </div>
                 </div>
-                <div id="continue-service-select-btn" class="booking-system__button next-button">Continue</div>
+                <button id="continue-service-select-btn" class="booking-system__button next-button">Continue</button>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="new-password">
@@ -246,7 +246,7 @@ header("Pragma: no-cache");
                         </form>
                     </div>
                 </div>
-                <div id="continue-service-select-btn" class="booking-system__button next-button">Continue</div>
+                <button id="continue-service-select-btn" class="booking-system__button next-button">Continue</button>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="add-card">
@@ -296,7 +296,7 @@ header("Pragma: no-cache");
                     
                     </div>
                 </div>
-                <div id="continue-service-select-btn" class="booking-system__button next-button">Complete Booking</div>
+                <button id="continue-service-select-btn" class="booking-system__button next-button">Complete Booking</button>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="select-account">
@@ -314,8 +314,8 @@ header("Pragma: no-cache");
                     </div>
                 </div>
                 <div>
-                    <div id="continue-service-select-btn" class="booking-system__button next-button">Continue with current account</div>
-                    <div  class="booking-system__button_light login-as-another">Login as Another User</div>
+                    <button id="continue-service-select-btn" class="booking-system__button next-button">Continue with current account</button>
+                    <button  class="booking-system__button_light login-as-another">Login as Another User</button>
                 </div>
             </div>
         </div>
@@ -330,7 +330,7 @@ header("Pragma: no-cache");
                         <div class="booking-status__text">Please wait while we confirm your booking information</div>
                     </div>
                 </div>
-                <div id="back-to-home-btn" class="booking-system__button next-button hidden">Back to the home page</div>
+                <button id="back-to-home-btn" class="booking-system__button next-button hidden">Back to the home page</button>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="login">
@@ -338,8 +338,8 @@ header("Pragma: no-cache");
                 <div class="tab__inner-body">
                     <div class="customer-info">
                         <div class="customer-info__navigation info-box">
-                            <div id="nav-create-account" class="navigation-item">Create Account</div>
-                            <div class="navigation-item active">Login</div>
+                            <a id="nav-create-account" class="navigation-item">Create Account</a>
+                            <a class="navigation-item active">Login</a>
                         </div>
                         <form id="login-form" class="not-action">
                             <div class="custom-input">
@@ -356,7 +356,7 @@ header("Pragma: no-cache");
                         </form>
                     </div>
                 </div>
-                <div id="continue-service-select-btn" class="booking-system__button next-button">Continue</div>
+                <button id="continue-service-select-btn" class="booking-system__button next-button">Continue</button>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="booking-error">
@@ -376,8 +376,8 @@ header("Pragma: no-cache");
             <div class="tab__body justify">
                 <div class="tab__inner-body">
                     <div class="info-box">
-                        <div class="navigation-item active">My adresses</div>
-                        <div id="nav-add-address" class="navigation-item">Add new</div>
+                        <a class="navigation-item active">My adresses</a>
+                        <a id="nav-add-address" class="navigation-item">Add new</a>
                     </div>
                     <div class="boxes-list addresses-list">
                         <!-- <div class="boxes-list__item address-box address-box__active">
@@ -387,7 +387,7 @@ header("Pragma: no-cache");
                 
                     </div>
                 </div>
-                <div id="" class="booking-system__button next-button hidden">Book Now</div>
+                <button id="" class="booking-system__button next-button hidden">Book Now</button>
             </div>
         </div>
         <div class="tab isInactive isRHS" id="add-address">
@@ -395,8 +395,8 @@ header("Pragma: no-cache");
                 <div class="tab__inner-body">
                     <div class="customer-info">
                         <div class="customer-info__navigation info-box">
-                            <div id="nav-my-address" class="navigation-item">My adresses</div>
-                            <div class="navigation-item active">Add new</div>
+                            <a id="nav-my-address" class="navigation-item">My adresses</a>
+                            <a class="navigation-item active">Add new</a>
                         </div>
                         <form id="add-address-form" class="not-action">
                             <div class="custom-input">
@@ -418,13 +418,14 @@ header("Pragma: no-cache");
                         </form>
                     </div>
                 </div>
-                <div id="add-address-btn" class="booking-system__button next-button">Add new address</div>
+                <button id="add-address-btn" class="booking-system__button next-button">Add new address</button>
             </div>
         </div>
     </div>
 </div>
 
 <script id="stripe" src="https://js.stripe.com/v3/"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjBX_9vaaJlURp0ekst2J_nQl-2GvU7Oc&libraries=places&callback=initAutocomplete" async defer></script>
 <script src="assets/js/main.min.js?v=27"></script> 
  
 <script>  
@@ -435,13 +436,13 @@ header("Pragma: no-cache");
     //     // alert('keypress event\n\n' + 'key: ' + keyName);
     // });
     // let booking = new BookingView();
-    // booking.run();
-    let invalidForms = document.querySelectorAll(".not-action");
-    invalidForms.forEach((form)=>{
-        form.addEventListener("submit", function(event){
-            event.preventDefault();
-        });
-    });
+    // // booking.run();
+    // let invalidForms = document.querySelectorAll(".not-action");
+    // invalidForms.forEach((form)=>{
+    //     form.addEventListener("submit", function(event){
+    //         event.preventDefault();
+    //     });
+    // });
 
 </script>
 </body> 

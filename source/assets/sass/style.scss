@@ -28,7 +28,7 @@ body{
     border-radius: 6px;
     font-weight: 500;
     box-shadow: 0 9px 20px -5px rgba(0,0,0,.15), inset 0 -1px 0 rgba(0,0,0,.05);
-    transition: all 500ms ease-in-out;
+    transition: all 250ms ease-in-out;
     cursor: pointer;
     background: rgba(0, 13, 255, 1);
     color: white;
@@ -36,11 +36,13 @@ body{
     font-size: 18px;
     user-select: none;
     opacity: 1;
-    pointer-events: auto; 
+    pointer-events: auto;
+    border: none; 
 }
 
-.booking-system__button:hover{
-    background: rgb(1, 11, 197);
+.booking-system__button:hover, .booking-system__button:focus{
+    background: rgb(1, 9, 163);
+    box-shadow: 0 12px 25px -2px rgba(0,0,0,.45), inset 0 -1px 0 rgba(0,0,0,.05);
 }
 .booking-system__button.hidden{
     transform: translateY(100vh);
@@ -61,6 +63,7 @@ body{
     border-radius: 100px;
     border: 1px solid rgba(0,0,0,.2);
     color: #757575;
+    background: white;
     margin-top: 0;
     margin-top: 20px;
     letter-spacing: 1px;
@@ -436,6 +439,8 @@ body{
  
 }
 .navigation-item{
+    display: block;
+    text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
     font-weight: 700;
