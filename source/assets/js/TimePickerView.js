@@ -24,21 +24,21 @@ class TimePickerView {
         console.log(parent.querySelector('.time-picker__next').classList);
         let currentValue = parent.querySelector('.time-picker__number').innerHTML;
         const step = parent.querySelector('.time-picker__number').getAttribute("data-step");
-        this.checkValueBounds(parent, +currentValue + parseInt(step));
         if(!parent.querySelector('.time-picker__next').classList.contains("disabled")){
             parent.querySelector('.time-picker__number').innerHTML = pad(+currentValue + parseInt(step), 2);
             this.setDuration();
         }
+        this.checkValueBounds(parent, +currentValue + parseInt(step));
     }
     prevNumber(event) {
         const parent = event.currentTarget.parentElement;
         let currentValue = parent.querySelector('.time-picker__number').innerHTML;
         const step = parent.querySelector('.time-picker__number').getAttribute("data-step");
-        this.checkValueBounds(parent, +currentValue - parseInt(step));
         if(!parent.querySelector('.time-picker__prev').classList.contains("disabled")){
             parent.querySelector('.time-picker__number').innerHTML = pad(+currentValue - parseInt(step), 2);
             this.setDuration();
         }
+        this.checkValueBounds(parent, +currentValue - parseInt(step));
     }
 
     setDuration() {
@@ -53,14 +53,14 @@ class TimePickerView {
         const min = section.querySelector('.time-picker__number').getAttribute("data-min");
         const nextBtn = section.querySelector('.time-picker__next');
         const prevBtn = section.querySelector('.time-picker__prev');
-        if(value > max) {
+        if(value >= max) {
             nextBtn.classList.add("disabled");
         } else {
             if (nextBtn.classList.contains('disabled')) {
                 nextBtn.classList.remove('disabled');
             }
         }
-        if(value < min) {
+        if(value <= min) {
             prevBtn.classList.add("disabled");
         } else {
             if (prevBtn.classList.contains('disabled')) {

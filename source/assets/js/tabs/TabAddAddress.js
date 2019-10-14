@@ -20,6 +20,8 @@ class TabAddAddress extends Tab {
                     switch (this._data.action) {
                         case "addressSaved":
                             this._bookingViewAPI.jumpBackToSlide(10);
+                            this._registrationView.clearInputs();
+                            this.enableButton();
                             break;
                     }
                 }

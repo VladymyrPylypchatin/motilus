@@ -1,86 +1,79 @@
 //TODO Make Validation
-class RegistrationView{
-    constructor(registrationFormID){
+class RegistrationView {
+    constructor(registrationFormID) {
         this._registrationForm = document.querySelector(registrationFormID);
+        this._addressInput = this._registrationForm.querySelector("input[name=address]");
+        this.addressAutocomplete = null;
 
         this._name = null;
         this._email = null;
         this._phone = null;
         this._address = null;
-        this._city = null; 
-        this._state = null;
-        this._zip = null;
+        this._aptNumber = null;
 
         this._errors = [];
-    
+        this.initAutocomplete();
     }
 
-    
-    getData(){
+
+    getData() {
         this._name = this._registrationForm.querySelector("input[name=name]").value;
         this._email = this._registrationForm.querySelector("input[name=email]").value;
         this._phone = this._registrationForm.querySelector("input[name=phone]").value;
         this._address = this._registrationForm.querySelector("input[name=address]").value;
-        this._city = this._registrationForm.querySelector("input[name=city]").value;
-        this._state = this._registrationForm.querySelector("input[name=state]").value;
-        this._zip = this._registrationForm.querySelector("input[name=zipcode]").value;
+        this._aptNumber = this._registrationForm.querySelector("input[name=aptnumber]").value;
+        // this._city = this._registrationForm.querySelector("input[name=city]").value;
+        // this._state = this._registrationForm.querySelector("input[name=state]").value;
+        // this._zip = this._registrationForm.querySelector("input[name=zipcode]").value;
     }
-    async validateForm(){
+    async validateForm() {
         let errors = [];
         //Check emptyness of email and validation
-        if(!Validator.isFiled(this._email)){
+        if (!Validator.isFiled(this._email)) {
             errors.push("Please enter your email");
         } else {
-            if(!Validator.validateEmail(this._email)) errors.push("Please check your email");
+            if (!Validator.validateEmail(this._email)) errors.push("Please check your email");
         }
 
         //Validate name
-        if(!Validator.isFiled(this._name)){
+        if (!Validator.isFiled(this._name)) {
             errors.push("Please enter your name");
         } else {
-            if(!Validator.validateString(this._name)) errors.push("Please check your name");
+            if (!Validator.validateString(this._name)) errors.push("Please check your name");
         }
 
         //Validate phone number
-        if(!Validator.isFiled(this._phone)){
+        if (!Validator.isFiled(this._phone)) {
             errors.push("Please enter your phone");
         } else {
-            if(!Validator.validatePhoneNumber(this._phone)) errors.push("Please check your phone number");
+            if (!Validator.validatePhoneNumber(this._phone)) errors.push("Please check your phone number");
         }
 
-        //Validation address parts
+        // //Validation address parts
         if(!Validator.isFiled(this._address)) errors.push("Please enter your Address");
-        if(!Validator.isFiled(this._city)) errors.push("Please enter your city");
-        if(!Validator.isFiled(this._state)) errors.push("Please enter your State");
-
-        //Validate ZIP
-        if(!Validator.isFiled(this._zip)){
-            errors.push("Please enter you ZIP code")
-        } else {
-            if(!Validator.validateZipCode(this._zip)) errors.push("Please check you zip code");
-        }
-
-        //Validation of whole address
-        if(Validator.isFiled(this._address) && Validator.isFiled(this._city) && Validator.isFiled(this._state)){
-            if(!await Validator.validateAddress(this._address + " " + this._city + " " + this._state + " " + this._zip)){
+        if(!Validator.isFiled(this._aptNumber)) errors.push("Please enter your Appartment number");
+        
+        // //Validation of whole address
+        if(Validator.isFiled(this._address)){
+            if(!await Validator.validateAddress(this.addressAutocomplete.getPlace().formatted_address)){
                 errors.push("Please check your address. It is incorrect or not accurate enough.");
             } else {
-                if(!await Validator.validateGeofencing(this._address + " " + this._city + " " + this._state  + " " + this._zip)){
+                if(!await Validator.validateGeofencing(this.addressAutocomplete.getPlace().formatted_address)){
                     errors.push("Oops... It seems that we can't provide services in this area");
                 }
             }
         }
 
-        
 
-        if(!await Validator.checkUniqueEmail(this._email)) errors.push("A user with the email already exists. Please log in or register with a different email address.");
-        if(!await Validator.checkUniquePhone(this._phone)) errors.push("A user with the phone already exists. Please log in or register with a different email address.");
+
+        if (!await Validator.checkUniqueEmail(this._email)) errors.push("A user with the email already exists. Please log in or register with a different email address.");
+        if (!await Validator.checkUniquePhone(this._phone)) errors.push("A user with the phone already exists. Please log in or register with a different email address.");
         // errors
         console.dir(errors);
         this._errors = errors;
         return errors.length == 0;
     }
-    clearInputs(){
+    clearInputs() {
         this._registrationForm.querySelector("input[name=name]").value = "";
         this._registrationForm.querySelector("input[name=email]").value = "";
         this._registrationForm.querySelector("input[name=phone]").value = "";
@@ -88,19 +81,43 @@ class RegistrationView{
         this._registrationForm.querySelector("input[name=city]").value = "";
         this._registrationForm.querySelector("input[name=state]").value = "";
     }
-    getUserInfoObject(){
+
+    initAutocomplete() {
+        this.addressAutocomplete = new google.maps.places.Autocomplete(this._addressInput, { types: ['address'] });
+        this.addressAutocomplete.setFields(['address_component', 'formatted_address']);
+        this.addressAutocomplete.addListener('place_changed', this.addressChangedHandler.bind(this));
+    }
+
+    addressChangedHandler() {
+        var place =  this.addressAutocomplete.getPlace();
+    }
+
+    getUserInfoObject() {
+        const place = this.addressAutocomplete.getPlace().address_components;
         return {
             name: this._name,
             email: this._email,
             phone: this._phone.replace(/[)(\- ]+/, ""),
-            address: this._address,
-            zip: this._zip,
-            city: this._city,
-            state: this._state,
+            address: getAddressPartValue(place, 'street_number') + " " + getAddressPartValue(place, 'route') + " #" + this._aptNumber,
+            zip: getAddressPartValue(place, 'postal_code'),
+            city: getAddressPartValue(place, 'locality'),
+            state: getAddressPartValue(place, 'administrative_area_level_1'),
         };
     }
-    createUser(){
+    createUser() {
         Messanger.sendMessage("setUserInfo", this.getUserInfoObject());
     }
 
+}
+
+function getAddressPartValue(addressParts, partName) {
+    for(let i = 0; i < addressParts.length; i++) {
+        addressParts[i].types
+    }
+
+    const part = addressParts.find(addressPart => {
+        return addressPart.types.some(type => type === partName);
+    });
+
+    return part.long_name;
 }

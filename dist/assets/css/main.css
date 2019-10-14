@@ -105,7 +105,9 @@ body {
   cursor: pointer;
   -webkit-transition: all .25s ease-in-out;
   -o-transition: all .25s ease-in-out;
-  transition: all .25s ease-in-out; }
+  transition: all .25s ease-in-out;
+  font-family: 'Avenir LT Std';
+  font-size: 18px; }
 
 .booking-system__button_light:hover {
   border-color: rgba(0, 0, 0, 0.4);
@@ -889,7 +891,7 @@ body {
             align-items: center; }
   .time-picker__number {
     font-size: 65px;
-    color: #988e8e; }
+    color: black; }
   .time-picker__colon {
     font-size: 65px;
     display: -webkit-box;
@@ -900,7 +902,7 @@ body {
             align-items: center;
     padding-bottom: 15px;
     margin: 0 10px;
-    color: #322c2c; }
+    color: black; }
   .time-picker__controll {
     height: 25px;
     width: 25px;
@@ -909,6 +911,9 @@ body {
       fill: #d4caca;
       height: 100%;
       width: 100%; }
+  .time-picker .disabled {
+    opacity: 0;
+    pointer-events: none; }
 
 .boxes-list__item {
   margin: 15px 0;

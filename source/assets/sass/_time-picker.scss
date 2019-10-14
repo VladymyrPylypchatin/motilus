@@ -12,7 +12,7 @@
     }
     &__number{
         font-size: 65px;
-        color: #988e8e;
+        color: black;
     }
     &__colon{
         font-size: 65px;
@@ -20,7 +20,7 @@
         align-items: center;
         padding-bottom: 15px;
         margin: 0 10px;
-        color: #322c2c;
+        color: black;
     }
 
     &__controll{
@@ -33,5 +33,10 @@
             height: 100%;
             width: 100%;
         }
+    }
+
+    .disabled{
+        opacity: 0;
+        pointer-events: none;
     }
 }

@@ -1,71 +1,70 @@
 //TODO Make Validation
-class AddAddressView{
-    constructor(registrationFormID){
+class AddAddressView {
+    constructor(registrationFormID) {
         this._registrationForm = document.querySelector(registrationFormID);
         this._address = null;
-        this._city = null; 
-        this._state = null;
-        this._zip = null;
+        this._addressInput = this._registrationForm.querySelector("input[name=address]");
+        this.addressAutocomplete = null;
 
         this._errors = [];
-    
+        this.initAutocomplete();
     }
 
-    
-    getData(){
+
+    getData() {
         this._address = this._registrationForm.querySelector("input[name=address]").value;
-        this._city = this._registrationForm.querySelector("input[name=city]").value;
-        this._state = this._registrationForm.querySelector("input[name=state]").value;
-        this._zip = this._registrationForm.querySelector("input[name=zipcode]").value;
     }
-    async validateForm(){
+    async validateForm() {
         let errors = [];
-        
-        //Validation address parts
-        if(!Validator.isFiled(this._address)) errors.push("Please enter your Address");
-        if(!Validator.isFiled(this._city)) errors.push("Please enter your city");
-        if(!Validator.isFiled(this._state)) errors.push("Please enter your State");
 
-        //Validate ZIP
-        if(!Validator.isFiled(this._zip)){
-            errors.push("Please enter you ZIP code")
-        } else {
-            if(!Validator.validateZipCode(this._zip)) errors.push("Please check you zip code");
-        }
+        // //Validation address parts
+        if (!Validator.isFiled(this._address)) errors.push("Please enter your Address");
 
-        //Validation of whole address
-        if(Validator.isFiled(this._address) && Validator.isFiled(this._city) && Validator.isFiled(this._state)){
-            if(!await Validator.validateAddress(this._address + " " + this._city + " " + this._state + " " + this._zip)){
+        // //Validation of whole address
+        if (Validator.isFiled(this._address)) {
+            if (!await Validator.validateAddress(this.addressAutocomplete.getPlace().formatted_address)) {
                 errors.push("Please check your address. It is incorrect or not accurate enough.");
             } else {
-                if(!await Validator.validateGeofencing(this._address + " " + this._city + " " + this._state  + " " + this._zip)){
+                if (!await Validator.validateGeofencing(this.addressAutocomplete.getPlace().formatted_address)) {
                     errors.push("Oops... It seems that we can't provide services in this area");
                 }
             }
         }
 
-        
+
         // errors
         console.dir(errors);
         this._errors = errors;
         return errors.length == 0;
     }
-    clearInputs(){
-        this._registrationForm.querySelector("input[name=phone]").value = "";
-        this._registrationForm.querySelector("input[name=address]").value = "";
-        this._registrationForm.querySelector("input[name=city]").value = "";
-        this._registrationForm.querySelector("input[name=state]").value = "";
+
+    initAutocomplete() {
+        this.addressAutocomplete = new google.maps.places.Autocomplete(this._addressInput, { types: ['address'] });
+        this.addressAutocomplete.setFields(['address_component', 'formatted_address']);
+        this.addressAutocomplete.addListener('place_changed', this.addressChangedHandler.bind(this));
     }
-    getUserInfoObject(){
+
+    addressChangedHandler() {
+        var place = this.addressAutocomplete.getPlace();
+        console.dir(place);
+        console.dir(place.address_components);
+    }
+    clearInputs() {
+        console.log('clearing inputs');
+        this._addressInput.value = "";
+    }
+    getUserInfoObject() {
+        const place = this.addressAutocomplete.getPlace().address_components;
         return {
-            address: this._address,
-            zip: this._zip,
-            city: this._city,
-            state: this._state,
+            address: getAddressPartValue(place, 'street_number') + " " + getAddressPartValue(place, 'route'),
+            zip: getAddressPartValue(place, 'postal_code'),
+            city: getAddressPartValue(place, 'locality'),
+            state: getAddressPartValue(place, 'administrative_area_level_1'),
         };
     }
-    createUser(){
+    createUser() {
         Messanger.sendMessage("setUserInfo", this.getUserInfoObject());
     }
 
 }
+

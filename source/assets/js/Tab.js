@@ -117,6 +117,7 @@ class Tab {
     disableTabActions() {
         console.log("disable tabable elements");
         this._interactiveElements.forEach(element => {
+            element.blur();
             element.setAttribute('tabindex', '-1');
             console.log(element);
         });
