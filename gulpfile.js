@@ -21,7 +21,7 @@ var gulp = require('gulp'),
 
 // Compile sass
 gulp.task('sass', function () {
-     gulp.src(['source/assets/sass/main.scss'])
+     return gulp.src(['source/assets/sass/main.scss'])
         .pipe(plumber())
         .pipe(sass())
         .pipe(autoprefixer(['last 5 versions'], {cascade: true}))
@@ -31,11 +31,11 @@ gulp.task('sass', function () {
 
 // Compress css libs
 gulp.task('css-libs', function () {
-   return gulp.src('source/assets/sass/libs.scss')
-        .pipe(sass())
-        .pipe(cssnano())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('dist/assets/css'));
+//    return gulp.src('source/assets/sass/libs.scss')
+//         .pipe(sass())
+//         .pipe(cssnano())
+//         .pipe(rename({suffix: '.min'}))
+//         .pipe(gulp.dest('dist/assets/css'));
 });
 
 // Build css
@@ -59,6 +59,7 @@ gulp.task('scripts', function () {
         'source/assets/js/BookingStatusView.js',
         'source/assets/js/TimePickerView.js',
         'source/assets/js/AddAddressView.js',
+        'source/assets/js/SelectSpecialistView.js',
         'source/assets/js/Tab.js',
         'source/assets/js/tabs/TabSelectService.js',
         'source/assets/js/tabs/TabCalendar.js',
@@ -68,6 +69,7 @@ gulp.task('scripts', function () {
         'source/assets/js/tabs/TabBookingStatus.js',
         'source/assets/js/tabs/TabSelectAccount.js',
         'source/assets/js/tabs/TabSelectAddress.js',
+        'source/assets/js/tabs/TabSelectSpecialist.js',
         'source/assets/js/tabs/TabLogin.js',
         'source/assets/js/tabs/TabError.js',
         'source/assets/js/tabs/TabServiceDuration.js',
@@ -185,19 +187,8 @@ gulp.task('html', function () {
     .pipe(browserSync.reload({stream: true}));
 });
 
-//Watch
-gulp.task('watch', ['build', 'browser-sync', ], function () {
-    gulp.watch('source/assets/sass/**/*.scss', ['sass']);
-    //gulp.watch('source/assets/img/svg/**/*.svg', ['svgSprite']);//test
-    gulp.watch('source/assets/img/**/*.*', ['img']);//test
-    gulp.watch('source/*.html', ['html']);
-    gulp.watch('source/*.php', ['html']);
-    gulp.watch('source/assets/js/**/*.js', ['scripts']);
-    gulp.watch('source/assets/fonts/**/*', ['fonts']);
-});
-
 //Build
-gulp.task('build', ['clean', 'html', 'sass', 'css-libs', 'scripts-libs',  'scripts', 'img', 'fonts'], function () {
+gulp.task('build',  gulp.parallel('clean', 'html', 'sass', 'scripts-libs',  'scripts', 'img', 'fonts', function () {
     // var buildCss = gulp.src([
     //     'source/assets/css/main.css',
     //     'source/assets/css/libs.min.css',
@@ -211,5 +202,18 @@ gulp.task('build', ['clean', 'html', 'sass', 'css-libs', 'scripts-libs',  'scrip
     //     .pipe(gulp.dest('dist/assets/js'));
 
     // var buildHTML = gulp.src('source/*.html').pipe(gulp.dest(''));
-});
+}));
+
+
+//Watch
+gulp.task('watch', gulp.parallel('build', 'browser-sync', function () {
+    gulp.watch('source/assets/sass/**/*.scss', gulp.series('sass'));
+    //gulp.watch('source/assets/img/svg/**/*.svg', ['svgSprite']);//test
+    gulp.watch('source/assets/img/**/*.*', gulp.parallel('img'));//test
+    gulp.watch('source/*.html', gulp.parallel('html'));
+    gulp.watch('source/*.php', gulp.parallel('html'));
+    gulp.watch('source/assets/js/**/*.js', gulp.parallel('scripts'));
+    gulp.watch('source/assets/fonts/**/*', gulp.parallel('fonts'));
+}));
+
 

@@ -4,8 +4,18 @@ class TabSelectAccount extends Tab {
         this._data = null;
         this._secondaryButton = this._tab.querySelector(".login-as-another");
         this._secondaryButton.addEventListener("click", this.senodaryButtonHandler.bind(this));
+        this.isInited = false;
     }
     run() {
+        if(!this.isInited) {
+            this.listen();
+            this.isInited = true;
+        }
+        
+        this.enableBackButton();
+    }
+
+    listen() {
         window.addEventListener("message", async (event) => {
             try {
                 if (event.data != null) {
@@ -14,6 +24,7 @@ class TabSelectAccount extends Tab {
                         case "customerIsRepeated":
                             console.dir("Confirmed customer is Repeated");
                             this._bookingViewAPI.jumpToSlide(10);
+                            this.disableBackButton();
                             break;
                     }
                 }
@@ -25,6 +36,7 @@ class TabSelectAccount extends Tab {
 
     senodaryButtonHandler() {
         this.disableButton();
+        this.disableBackButton();
         this._bookingViewAPI.jumpToSlide(3);
     }
     actionButtonHandler() {
@@ -36,8 +48,8 @@ class TabSelectAccount extends Tab {
 
     setUser(UserData) {
         console.dir("Set user int Tab Select Account");
-        document.querySelector(".select-account .info-box__header").innerHTML = "Hi " + UserData.name;
-        document.querySelector(".select-account .info-box__text").innerHTML = "You are logged in as: " + UserData.email;
+        document.querySelector(".select-account .info-box__header").innerHTML = "Hi " + UserData.name + ",";
+        document.querySelector(".select-account .info-box__text").innerHTML = "Username: " + "<b>" + UserData.email + "</b>";
     }
 }
 

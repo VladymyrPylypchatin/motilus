@@ -4,11 +4,26 @@ class TabServiceDuration extends Tab {
         this._args = null;
         this._serviceDuration = 1;
         this._timePickerView = new TimePickerView("#duration-time-picker", this);
+        this.isInited = false;
     }
 
     run(args) {
-        this._args = args;
+        if( !this.isInited) {
+            this._args = args;
+            this.listen();
+            this.isInited = true;
+        }
+
         console.dir("TabServiceDuration");
+        // if (this._args.specId) {
+            this.enableBackButton();
+        // } else {
+        //     this.disableBackButton();
+        // } 
+      
+    }
+
+    listen() {
         window.addEventListener("message", async (event) => {
             try {
                 if (event.data != null) {
@@ -29,9 +44,13 @@ class TabServiceDuration extends Tab {
 
     actionButtonHandler() {
         if (this._bookingViewAPI._status == "ready") {
-            this._bookingViewAPI.requestSlideNext();
+            this._bookingViewAPI.requestSlideNext({enableBackBtn: this._args.enableBackBtn});
             this._bookingViewAPI.startLoading();
-            Messanger.sendMessage("selectService", { serviceName: this._args, serviceDuration: this._serviceDuration });
+            Messanger.sendMessage("selectService", { 
+                serviceName: this._args.service, 
+                serviceDuration: this._serviceDuration,
+                specialist: this._args.specId
+            });
         }
     }
 }

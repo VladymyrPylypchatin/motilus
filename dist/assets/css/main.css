@@ -51,9 +51,9 @@ body {
   font-weight: 500;
   -webkit-box-shadow: 0 9px 20px -5px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 0 9px 20px -5px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-  -webkit-transition: all 250ms ease-in-out;
-  -o-transition: all 250ms ease-in-out;
-  transition: all 250ms ease-in-out;
+  -webkit-transition: all 450ms ease-in-out;
+  -o-transition: all 450ms ease-in-out;
+  transition: all 450ms ease-in-out;
   cursor: pointer;
   background: #000dff;
   color: white;
@@ -112,6 +112,33 @@ body {
 .booking-system__button_light:hover {
   border-color: rgba(0, 0, 0, 0.4);
   color: #353535; }
+
+.booking-system__back-btn {
+  height: 100% !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer; }
+
+.booking-system__back-btn.disable {
+  opacity: 0;
+  pointer-events: none; }
+
+.booking-system__back-btn svg {
+  height: 50%;
+  color: red;
+  -webkit-transition: all .200s ease-in-out;
+  -o-transition: all .200s ease-in-out;
+  transition: all .200s ease-in-out; }
+
+.booking-system__back-btn:hover svg {
+  fill: lightgray; }
 
 .notification-wrapper {
   display: -webkit-box;
@@ -183,6 +210,7 @@ body {
           justify-content: center;
   font-size: 18px;
   font-weight: 700;
+  text-align: center;
   text-transform: uppercase; }
 
 /* Tabs */
@@ -278,23 +306,23 @@ body {
   font-size: 18px;
   font-weight: 400; }
 
-.controlls {
+.calendar .controlls {
   height: 20px;
   width: 20px;
   cursor: pointer;
   margin: 0 5px; }
 
-.controlls:last-child {
+.calendar .controlls:last-child {
   margin-right: 0; }
 
-.controlls svg {
+.calendar .controlls svg {
   height: 100%;
   width: 100%;
   -webkit-transition: all .200s ease-in-out;
   -o-transition: all .200s ease-in-out;
   transition: all .200s ease-in-out; }
 
-.controlls:hover svg {
+.calendar .controlls:hover svg {
   fill: lightgray; }
 
 /* Callendar dates */
@@ -381,6 +409,9 @@ body {
 
 .dates-list li:not(.active) .date-list__date:hover {
   background: #F5F5F5; }
+
+.callendar__selected-time {
+  font-weight: bold; }
 
 .callendar__selected-time .change {
   cursor: pointer;
@@ -864,20 +895,21 @@ body {
             transform: translateX(-100%); } }
 
 .time-picker {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   margin-bottom: 40px; }
+  .time-picker__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
   .time-picker__section {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -911,12 +943,17 @@ body {
       fill: #d4caca;
       height: 100%;
       width: 100%; }
+  .time-picker__text {
+    margin-bottom: 10px; }
+  .time-picker__warning {
+    margin-top: 20px;
+    text-align: center; }
   .time-picker .disabled {
     opacity: 0;
     pointer-events: none; }
 
 .boxes-list__item {
-  margin: 15px 0;
+  margin: 5px 0;
   padding: 15px 20px;
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -928,11 +965,77 @@ body {
   .boxes-list__item:hover {
     -webkit-box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12);
             box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
+  .boxes-list__item_active {
+    border-color: #000dff;
+    -webkit-box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
 
-.address-box__active {
-  border-color: #000dff;
-  -webkit-box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
+.address-box {
+  -webkit-transition: all 200ms;
+  -o-transition: all 200ms;
+  transition: all 200ms;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 72px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  will-change: height; }
+  .address-box__active {
+    -webkit-box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12);
+    cursor: auto; }
+    .address-box__active .unselect {
+      display: block !important; }
+    .address-box__active .remove {
+      display: none !important; }
+  .address-box.hidden-animation {
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    border-width: 0;
+    overflow: hidden; }
+  .address-box .unselect {
+    color: #000dff;
+    font-weight: bold;
+    cursor: pointer;
+    display: none; }
+  .address-box .remove {
+    height: 20px;
+    width: 20px;
+    cursor: pointer; }
+    .address-box .remove.disabled {
+      pointer-events: none; }
+      .address-box .remove.disabled svg {
+        fill: #cfcfcf; }
+    .address-box .remove:hover svg {
+      fill: red; }
+    .address-box .remove svg {
+      height: 100%;
+      width: 100%;
+      fill: #000DFF; }
+  .address-box .remove-spiner {
+    height: 20px;
+    display: none; }
+    .address-box .remove-spiner img {
+      height: 100%; }
+  .address-box.deleting {
+    pointer-events: none;
+    background: #e6e6e6; }
+    .address-box.deleting .remove-spiner {
+      display: block; }
+    .address-box.deleting .remove {
+      display: none; }
 
 .cards-list {
   display: -webkit-box;
@@ -991,6 +1094,38 @@ body {
 
 .custom-checkbox a {
   color: blue; }
+
+.specialist-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50px auto;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font: inherit; }
+  .specialist-box__avatar {
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden; }
+    .specialist-box__avatar img {
+      height: 100%; }
+  .specialist-box__name {
+    font-weight: bold; }
+
+.specialists-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .specialists-list .lds-roller {
+    margin-top: 50px; }
 
 @media (max-width: 480px) {
   .booking-system {

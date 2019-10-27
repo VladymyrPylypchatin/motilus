@@ -3,7 +3,8 @@ class TabCalendar extends Tab{
         super(id, title, BookingViewAPI);
         this._data = null;
         this._calendarView = new CalendarView("booking-calendar", this);
-        
+        this.enableBack = false;
+        this._listenerActivated = false;
     }
     
     eventsBinding(){
@@ -12,8 +13,16 @@ class TabCalendar extends Tab{
     clickedButton(){
     }
 
+    preRun(props) {
+        if (!this._listenerActivated) this.listen();
+        // if(props.enableBackBtn) this.enableBack = true;
+    }
     run(){
-        console.dir("TabCallendar");
+        this.enableBackButton();
+        this._calendarView.reinit();
+    }
+
+    listen() {
         window.addEventListener("message", async (event) => {
             try{
                 if(event.data != null){
@@ -41,12 +50,14 @@ class TabCalendar extends Tab{
                 // console.log("wrong message");
             }
         });
+        this._listenerActivated = true;
     }
 
     actionButtonHandler(){
         if(this._bookingViewAPI._status == "ready"){
             this._bookingViewAPI._status == "proccesing"
             this._bookingViewAPI.startLoading();
+            this.disableBackButton();
             this.disableButton();
 
             if(this._bookingViewAPI._userAuthorized){
@@ -58,6 +69,13 @@ class TabCalendar extends Tab{
         // if(this._bookingViewAPI._status == "ready"){
             // Messanger.sendMessage("selectService", {serviceName: "Travel Planner"});
         // }
+    }
+
+    async backButtonHandler() {
+        // console.log("Slide Back!!");
+        // this.disableBackButton();
+        // await this._bookingViewAPI.deactivateSlide(1);
+        // this._bookingViewAPI.jumpBackToSlide(12);
     }
 }
 

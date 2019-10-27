@@ -51,7 +51,7 @@ class RegistrationView {
 
         // //Validation address parts
         if(!Validator.isFiled(this._address)) errors.push("Please enter your Address");
-        if(!Validator.isFiled(this._aptNumber)) errors.push("Please enter your Appartment number");
+        // if(!Validator.isFiled(this._aptNumber)) errors.push("Please enter your Appartment number");
         
         // //Validation of whole address
         if(Validator.isFiled(this._address)){
@@ -94,11 +94,14 @@ class RegistrationView {
 
     getUserInfoObject() {
         const place = this.addressAutocomplete.getPlace().address_components;
+        let addressStr = getAddressPartValue(place, 'street_number') + " " + getAddressPartValue(place, 'route');
+        if(this._aptNumber) addressStr += " #" + this._aptNumber;
+        
         return {
             name: this._name,
             email: this._email,
             phone: this._phone.replace(/[)(\- ]+/, ""),
-            address: getAddressPartValue(place, 'street_number') + " " + getAddressPartValue(place, 'route') + " #" + this._aptNumber,
+            address: addressStr,
             zip: getAddressPartValue(place, 'postal_code'),
             city: getAddressPartValue(place, 'locality'),
             state: getAddressPartValue(place, 'administrative_area_level_1'),

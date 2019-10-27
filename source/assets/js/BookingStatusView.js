@@ -46,8 +46,8 @@ class BookingStausView{
                        </g>
                    </svg>
         `;
-        this._header.innerHTML = "YOUR BOOKING CONFIRMED";
-        this._text.innerHTML = "Soon we will call you to confirming your booking details.";
+        this._header.innerHTML = "CONFIRMED";
+        this._text.innerHTML = "You will receive a text message confirming your appointment.";
     }
     bookingConfirmedASAP(){
         this._image.innerHTML = `

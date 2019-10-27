@@ -22,6 +22,7 @@ class Tab {
             this._actionButton.addEventListener("click", this.actionButtonHandler.bind(this));
         }
 
+
         this._interactiveElements.forEach(elemnet => {
             if (elemnet.tagName !== "BUTTON" && elemnet.tagName !== "INPUT")
             elemnet.addEventListener("keyup", function(event) {
@@ -46,6 +47,8 @@ class Tab {
         this._tab.classList.remove("isLHS");
         this._tab.classList.remove("isInactive");
         this._tab.classList.add("isActive");
+        // this._bookingViewAPI.slideBackBtn.onclick = this.backButtonHandler.bind(this);
+        
         this.activateTab();
     }
 
@@ -63,6 +66,15 @@ class Tab {
         this._tab.classList.add("isRHS");
         this._tab.classList.add("isInactive");
         this._tab.classList.remove("isActive");
+    }
+
+    deactivate() {
+        this.disableTabActions();
+        this._tab.classList.remove("animate");
+        this._tab.classList.remove("isLHS");
+        this._tab.classList.remove("isActive");
+        this._tab.classList.add("isRHS");
+        this._tab.classList.add("isInactive");
     }
 
     showButton() {
@@ -83,6 +95,18 @@ class Tab {
     enableButton() {
         this._actionButton.classList.remove("disabled");
         this._actionButton.setAttribute('tabindex', '0');
+    }
+
+    enableBackButton() {
+        this._bookingViewAPI.slideBackBtn.classList.remove("disable");
+    }
+
+    disableBackButton() {
+        this._bookingViewAPI.slideBackBtn.classList.add("disable");
+    }
+
+    backButtonHandler() {
+
     }
 
     actionButtonHandler() {

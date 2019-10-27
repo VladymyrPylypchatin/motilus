@@ -4,36 +4,43 @@ class BookingView{
         this._status = "ready";
         this._userAuthorized = false;
         this._tabList = [
-            new TabSelectService("select-service", "Book Online", this),
-            new TabServiceDuration("chose-duration", "SERVICE DURATION", this),
-            new TabCalendar("chose-datetime", "CHOSE DATE & TIME", this),
-            new TabCustomerInfo("customer-info", "CUSTOMER INFORMATION", this),
-            new TabNewPassword("new-password", "New Password", this),
-            new TabAddCard("add-card", "Payment Method", this), //add card
-            new TabSelectAccount("select-account", "Select Account", this),
-            new TabBookingStaus("booking-status", "Booking Status", this),
-            new TabLogin("login", "Login", this),
-            new TabError("booking-error", "Booking Status", this),
-            new TabSelectAddress("select-address", "Select adress for service", this),
-            new TabAddAddress("add-address", "Add new address for service", this),
+            new TabSelectService("select-service", "Book Online", this), //0
+            new TabServiceDuration("chose-duration", "Choose Your Service Duration", this), //1
+            new TabCalendar("chose-datetime", "Choose a Date & Time that Works for You", this), //2
+            new TabCustomerInfo("customer-info", "CUSTOMER INFORMATION", this), //3
+            new TabNewPassword("new-password", "New Password", this), //4
+            new TabAddCard("add-card", "Payment Method", this), //add card //5
+            new TabSelectAccount("select-account", "Select Account", this), //6
+            new TabBookingStaus("booking-status", "Booking Status", this), //7
+            new TabLogin("login", "Login", this), //8
+            new TabError("booking-error", "Booking Status", this), //9
+            new TabSelectAddress("select-address", "Choose Your Service Address", this), //10
+            new TabAddAddress("add-address", "Add new address for service", this), //11
+            new TabSelectSpecialist("chose-specialist", "Select Your Specialist", this), //12
+
         ];
         this._activeTabIndex = 0;
         this._activeTab = this._tabList[0];
         this._nextTab = this._tabList[1];
         this._prevTab = null;
-    
+        //Navigation
+        this.slideBackBtn = document.querySelector(".booking-system__back-btn");
+        this.slideBackBtn.addEventListener("click", this.slideBack.bind(this));
+        this.navHistory = [];
 
         this._notificator = new Notificator(".notification");
 
         this._titleElem = document.querySelector(".booking-system__title");
         this._mainLoader = document.querySelector(".booking-systme__loader");
         this._stripe = document.querySelector("#stripe");
+        
         // this.init();
     }
     init(){
-            this._activeTab.run();
+        this._activeTab.run();
         this.updateTitle();
     }
+    
     
     render(){
         this.updateTitle();
@@ -53,10 +60,10 @@ class BookingView{
     }
 
     //Preload data of the next slide before animaton
-    requestSlideNext(){
+    requestSlideNext(props){
        if(this._status == "ready"){
             this._status = "proccesing";
-            this._nextTab.run();
+            this._nextTab.preRun(props);
             // Messanger.sendMessage("requestSlideNext", {});
         }
     }
@@ -75,15 +82,22 @@ class BookingView{
         this._activeTab = this._nextTab;
         this._nextTab = this._tabList[this._activeTabIndex + 1];
         
+
         this.updateTitle();
         this._status = "ready"
         this._activeTab.run(params);
-
+        this.navHistory.push(this._prevTab);
         // console.dir(this._activeTab);
         // console.dir(this);
     }
 
-    async jumpToSlide(slideIndex){
+    async deactivateSlide(slideIndex) {
+        const tab = this._tabList[slideIndex];
+        await tab.deactivate();
+        console.log("Slide deactivated");
+    }
+
+    async jumpToSlide(slideIndex, params){
         await this.finishLoading();
 
         this._activeTabIndex = slideIndex;
@@ -98,7 +112,8 @@ class BookingView{
         
         this.updateTitle();
         this._status = "ready"
-        this._activeTab.run();
+        this._activeTab.run(params);
+        this.navHistory.push(this._prevTab);
     }
 
     async jumpBackToSlide(slideIndex){
@@ -117,6 +132,34 @@ class BookingView{
         this.updateTitle();
         this._status = "ready"
         this._activeTab.run();
+        this.navHistory.push(this._prevTab);
+    }
+
+    async slideBack() {
+        console.dir(this.navHistory);
+        if(this.navHistory.length != 1) {
+            const prevTab = this.navHistory.pop();
+            
+            this._activeTab.disableRight();
+            prevTab.activateRight();
+            
+            this._nextTab = this._activeTab;
+            this._activeTab = prevTab;
+            this.updateTitle();
+            prevTab.run();
+            console.log("run");
+        } else {
+            this.closeBookingSystem();
+            this._activeTab.disableBackButton();
+        }
+
+ 
+
+
+    }
+
+    closeBookingSystem() {
+        Messanger.sendMessage("closeBookingSystem", {});
     }
 
     updateTitle(){

@@ -131,4 +131,15 @@ class Validator{
 
         return true;
     }
+
+    static validateAddressIsUnique(userAddresses, newAddress){
+        console.dir("Validate Addresss Unique proccess");
+        const result = userAddresses.some(addressObj => {
+            return (addressObj.address == newAddress.address && 
+                    addressObj.city == newAddress.city && 
+                    addressObj.state == newAddress.state &&
+                    addressObj.zip == newAddress.zip);
+        });
+        return !result;
+    }
 }

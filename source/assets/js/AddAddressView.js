@@ -3,6 +3,9 @@ class AddAddressView {
     constructor(registrationFormID) {
         this._registrationForm = document.querySelector(registrationFormID);
         this._address = null;
+        this._aptNumber = null;
+        this.userAddresses = [];
+
         this._addressInput = this._registrationForm.querySelector("input[name=address]");
         this.addressAutocomplete = null;
 
@@ -10,9 +13,15 @@ class AddAddressView {
         this.initAutocomplete();
     }
 
+    setUserAddresses(addresses) {
+        this.userAddresses = addresses;
+        console.log("New User Addresses");
+        console.log(this.userAddresses);
+    }
 
     getData() {
         this._address = this._registrationForm.querySelector("input[name=address]").value;
+        this._aptNumber = this._registrationForm.querySelector("input[name=aptnumber]").value;
     }
     async validateForm() {
         let errors = [];
@@ -27,10 +36,22 @@ class AddAddressView {
             } else {
                 if (!await Validator.validateGeofencing(this.addressAutocomplete.getPlace().formatted_address)) {
                     errors.push("Oops... It seems that we can't provide services in this area");
+                } else {
+                    console.log("Validation Unique");
+                    console.log(this.userAddresses);
+                    console.log(this.getUserInfoObject());
+                    console.log("Is unieur")
+                    if (!Validator.validateAddressIsUnique(this.userAddresses, this.getUserInfoObject())){
+                        errors.push("This address already added");
+                    }
                 }
             }
         }
 
+        //Validate whether address exist
+        // if(await Validator.validateAddressUnique(this.getUserInfoObject())) {
+
+        // }
 
         // errors
         console.dir(errors);
@@ -52,11 +73,15 @@ class AddAddressView {
     clearInputs() {
         console.log('clearing inputs');
         this._addressInput.value = "";
+        this._registrationForm.querySelector("input[name=aptnumber]").value = "";
     }
     getUserInfoObject() {
         const place = this.addressAutocomplete.getPlace().address_components;
+        let addressStr = getAddressPartValue(place, 'street_number') + " " + getAddressPartValue(place, 'route');
+        if(this._aptNumber) addressStr += " #" + this._aptNumber;
+
         return {
-            address: getAddressPartValue(place, 'street_number') + " " + getAddressPartValue(place, 'route'),
+            address: addressStr,
             zip: getAddressPartValue(place, 'postal_code'),
             city: getAddressPartValue(place, 'locality'),
             state: getAddressPartValue(place, 'administrative_area_level_1'),

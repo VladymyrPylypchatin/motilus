@@ -126,7 +126,7 @@ class CalendarView{
             let agentId = event.target.getAttribute("data-agent-id");
             Messanger.sendMessage("selectTimeSlot", {timeSlot, agentId});
 
-            this._selectedTimeSlot.querySelector(".time").innerHTML = getDayPart(new Date(timeSlot)) + " " + toPeriodFormat(new Date(timeSlot));
+            this._selectedTimeSlot.querySelector(".time").innerHTML = toPeriodFormat(new Date(timeSlot));
                 
             this.hideTimeSlots();
 
@@ -210,6 +210,13 @@ class CalendarView{
         setTimeout(()=>{
             this._selectedTimeSlot.classList.remove("visualy-hidden");
         }, 300);
+    }
+
+    reinit() {
+        this.hideSelectedTimeBlock();
+        this._tabAPI.hideButton();
+        this._tabAPI.enableButton();
+        this.render();
     }
 }
 

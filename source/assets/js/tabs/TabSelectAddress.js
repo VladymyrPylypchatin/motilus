@@ -17,6 +17,7 @@ class TabSelectAddress extends Tab {
                         case "setUserAddresses": {
                             console.dir(this._data.data.addresses);
                             this.selectAddressView.setAddressesData(this._data.data.addresses);
+                            this.selectAddressView.onAddressDelete(this.deleteAddressHandler);
                             this.selectAddressView.renderList();
                         }
                         break;
@@ -39,10 +40,15 @@ class TabSelectAddress extends Tab {
         Messanger.sendMessage("getUserAdresses", {});
     }
 
+    deleteAddressHandler(id) {
+        Messanger.sendMessage("deleteAddress", {addressId: id});
+        console.log("Delete Address Message");
+    }
+
     navigationHandler() {
         if (this._bookingViewAPI._status == "ready") {
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpToSlide(11);
+            this._bookingViewAPI.jumpToSlide(11, {addresses: this.selectAddressView._addressesData});
             this.hideButton();
         }
     }

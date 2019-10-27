@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+        }
+        .message-wrapper {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .message-box {
+            align-items: stretch;
+            border-right: 2px solid white;
+            font-family: Arial, Helvetica, sans-serif;
+            background: white;
+            box-shadow: -1px 3px 14px 0px rgba(0, 0, 0, 0.26);
+            margin-bottom: 15px;
+            transition: all 300ms ease-in-out;
+            transform: translateY(-150%);
+            position: relative;
+            /* width:  calc(100% - 100px); */
+            padding: 5px 40px;
+            display: flex;
+            border-radius: 0 0 7px 7px;
+            /* margin: 0 50px; */
+        }
+        .message-box__container {
+            display: grid;
+            grid-template-columns: 20px auto;
+            grid-column-gap: 15px;
+            height: 100%;
+            margin: auto;
+            max-width: 1000px;
+        }
+
+        .message-box.active {
+            transform: translateY(0);
+        }
+
+        .message-box.hide {
+            transform: translateY(-150%) !important;
+            opacity: 0;
+        }
+
+        .message-box__indicator {
+            display: flex;
+            fill: white;
+        }
+
+        .message-box__content {
+            /* padding: 15px 0; */
+            /* padding-right: 15px;  */
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .message-box__content .header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            display: none;
+        }
+
+        .message-box__content .text {
+            font-size: 14px;
+        }
+
+        .message-box__indicator .img {
+            height: 20px;
+            width: 20px;
+            margin: auto;
+        }
+
+        .message-box__indicator .img svg {
+            height: 100%;
+            width: 100%;
+        }
+
+
+        /* Success */
+        .message-box_success {
+            background: #35D8B5;
+        }
+
+        .message-box_success {
+            border-right-color: #35D8B5;
+        }
+
+        .message-box_success .header {
+            color: #35D8B5;
+        }
+
+        /* Erorr */
+        .message-box_error {
+            background: #F85664;
+        }
+
+        .message-box_error {
+            border-right-color: #F85664;
+        }
+
+        .message-box_error .header {
+            color: #F85664;
+        }
+
+        /* Loading */
+        .message-box_loading {
+            background: #000dff;
+        }
+
+        .message-box_loading {
+            border-right-color: #000dff;
+        }
+
+        .message-box_loading .header {
+            color: #000dff;
+        }
+
+        /* CLose BTN */
+        .message-box__close{
+            position: absolute;
+            height: 10px;
+            width: 10px;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            display: flex;
+        }
+        .message-box__close svg{
+            height: 100%;
+            fill: white;
+            width: 100%;
+        }
+    </style>
+    <div class="message-wrapper">
+        <!-- <div class="message-box message-box_error active">
+            <div class="message-box__container">
+
+                <div class="message-box__indicator">
+                    <div class="img">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 26 26" enable-background="new 0 0 26 26" width="512px" height="512px" class=""><g><path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"/></g> </svg>
+                    </div>
+                </div>
+                <div class="message-box__content">
+                    <div class="header">Success box</div>
+                    <div class="text">Your account was registerd. Check your inbox and folow instructions.</div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+        'use strict';
+        class Notifier {
+            constructor(messageWrapper) {
+                this._idCounter = 0;
+                this._wrapper = messageWrapper;
+                this._messages = [];
+            }
+            showMessage(header, text, status, timer) {
+                this.hideLast();
+
+                let messageBox = this.createMessage(header, text, status);
+                this._messages.push(messageBox);
+                this._wrapper.appendChild(messageBox);
+                setTimeout(() => {
+                    messageBox.classList.add("active");
+                }, 200);
+
+                if(timer > 0){
+                    setTimeout(()=>{
+                        this.hideLast();
+                    }, timer);
+                }
+            }
+
+            hideAllMessages() {
+                this._messages.forEach((elme) => {
+                    elme.classList.add("hide");
+                });
+
+                setTimeout(() => {
+                    this._wrapper.innerHTML = "";
+                    this._messages = [];
+                    this.eventEmptyNotifier();
+                }, 350);
+            }
+            
+            hideLast(){
+                if(this._messages.length == 0) return;
+                
+                let index = this._messages.length - 1;
+                this._messages[index].classList.add("hide");
+                let elem = this._messages.shift();
+                setTimeout(() => {
+                    elem.remove();
+                    this.eventEmptyNotifier();
+                }, 300);
+                
+            }
+
+            eventEmptyNotifier(){
+                console.log(this._messages.length);
+                if(this._messages.length == 0){
+                    parent.postMessage("NotifierIsEmpty", "*");
+                }
+            }
+
+            createMessage(header, text, status) {
+                let messageBox = document.createElement("div");
+                messageBox.classList.add("message-box");
+                messageBox.classList.add(this.getStatusClass(status));
+                messageBox.innerHTML = `
+                <div class="message-box__container">
+                    <div class="message-box__close">
+                        <svg width="64" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">
+                            <g>
+                                <path  d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="message-box__indicator">
+                        <div class="img">
+                            ${this.getStatusImg(status)}
+                        </div>
+                    </div>
+                    <div class="message-box__content">
+                        <div class="header">${header}</div>
+                        <div class="text">${text}</div>
+                    </div>
+                </div>
+                `;
+
+                messageBox.querySelector(".message-box__close").addEventListener("click", this.hideLast.bind(this));
+                return messageBox;
+            }
+
+            getStatusClass(status) {
+                let className = "";
+                switch (status) {
+                    case "success":
+                        className = "message-box_success";
+                    break;
+                    case "error":
+                        className = "message-box_error";
+                    break;
+                    case "loading":
+                        className = "message-box_loading";
+                    break;
+                }
+
+                return className;
+            }
+
+            getStatusImg(status) {
+                let svgCode = "";
+                switch (status) {
+                    case "success":
+                        svgCode = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 26 26" enable-background="new 0 0 26 26" width="512px" height="512px" class=""><g><path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" data-original="#000000" class="active-path" data-old_color="#000000" /></g> </svg>`;
+                    break;
+                    case "error":
+                        svgCode = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 426.667 426.667" style="enable-background:new 0 0 426.667 426.667;" xml:space="preserve" width="512px" height="512px"><g><path d="M213.333,0C95.514,0,0,95.514,0,213.333s95.514,213.333,213.333,213.333  s213.333-95.514,213.333-213.333S331.153,0,213.333,0z M330.995,276.689l-54.302,54.306l-63.36-63.356l-63.36,63.36l-54.302-54.31  l63.356-63.356l-63.356-63.36l54.302-54.302l63.36,63.356l63.36-63.356l54.302,54.302l-63.356,63.36L330.995,276.689z" data-original="#F05228" class="active-path" data-old_color="#F05228" fill="#FFFFFF"/></g> </svg>`;
+                    break;
+                    case "loading":
+                        svgCode = `
+                        <svg class="lds-spin"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><g transform="translate(75,50)">
+                            <g transform="rotate(0)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="1" transform="scale(1.07088 1.07088)">
+                            <animateTransform attributeName="transform" type="scale" begin="-0.875s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.875s"></animate>
+                            </circle>
+                            </g>
+                            </g><g transform="translate(67.67766952966369,67.67766952966369)">
+                            <g transform="rotate(45)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="0.875" transform="scale(1.08337 1.08337)">
+                            <animateTransform attributeName="transform" type="scale" begin="-0.75s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.75s"></animate>
+                            </circle>
+                            </g>
+                            </g><g transform="translate(50,75)">
+                            <g transform="rotate(90)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="0.75" transform="scale(1.09588 1.09588)">
+                            <animateTransform attributeName="transform" type="scale" begin="-0.625s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.625s"></animate>
+                            </circle>
+                            </g>
+                            </g><g transform="translate(32.32233047033631,67.67766952966369)">
+                            <g transform="rotate(135)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="0.625" transform="scale(1.00838 1.00838)">
+                            <animateTransform attributeName="transform" type="scale" begin="-0.5s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.5s"></animate>
+                            </circle>
+                            </g>
+                            </g><g transform="translate(25,50)">
+                            <g transform="rotate(180)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="0.5" transform="scale(1.02087 1.02087)">
+                            <animateTransform attributeName="transform" type="scale" begin="-0.375s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.375s"></animate>
+                            </circle>
+                            </g>
+                            </g><g transform="translate(32.32233047033631,32.32233047033631)">
+                            <g transform="rotate(225)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="0.375" transform="scale(1.03338 1.03338)">
+                            <animateTransform attributeName="transform" type="scale" begin="-0.25s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.25s"></animate>
+                            </circle>
+                            </g>
+                            </g><g transform="translate(49.99999999999999,25)">
+                            <g transform="rotate(270)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="0.25" transform="scale(1.04588 1.04588)">
+                            <animateTransform attributeName="transform" type="scale" begin="-0.125s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="-0.125s"></animate>
+                            </circle>
+                            </g>
+                            </g><g transform="translate(67.67766952966369,32.32233047033631)">
+                            <g transform="rotate(315)">
+                            <circle cx="0" cy="0" r="5" fill="#ffffff" fill-opacity="0.125" transform="scale(1.05838 1.05838)">
+                            <animateTransform attributeName="transform" type="scale" begin="0s" values="1.1 1.1;1 1" keyTimes="0;1" dur="1s" repeatCount="indefinite"></animateTransform>
+                            <animate attributeName="fill-opacity" keyTimes="0;1" dur="1s" repeatCount="indefinite" values="1;0" begin="0s"></animate>
+                            </circle>
+                            </g>
+                            </g></svg>
+                        `;
+                    break;
+                }
+
+                return svgCode;
+            }
+
+        }
+    </script>
+    <script>
+        let wrapper = document.querySelector(".message-wrapper");
+        let notfier = new Notifier(wrapper);
+
+        window.addEventListener('message', (event) => {
+            try{
+                let message = JSON.parse(event.data);
+                let action = message.action;
+                switch(action){
+                    case "showMessage":
+                        notfier.showMessage(message.data.header, message.data.text, message.data.status, message.data.timer);
+                    break;
+                    case "hideMessage":
+                        notfier.hideAllMessages();
+                    break;
+                }
+            } catch (ex){
+                console.log(ex);
+            }
+            console.log(`Received message: ${event.data}`);
+        });
+    </script>
+</body>
+
+</html>

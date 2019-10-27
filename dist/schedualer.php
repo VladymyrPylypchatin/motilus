@@ -6,12 +6,19 @@ header("Pragma: no-cache");
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="assets/css/main.css?v=19">
+<link rel="stylesheet" href="assets/css/main.css?v=29">
 <body>
 <div class="booking-system">
     <div class="booking-system__header">
         <div class="booking-system__header-component">
-            <div class="controlls"></div>
+            <div class="booking-system__back-btn disable">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 240.823 240.823" style="enable-background:new 0 0 240.823 240.823;" xml:space="preserve">
+                    <path id="Chevron_Right" d="M57.633,129.007L165.93,237.268c4.752,4.74,12.451,4.74,17.215,0c4.752-4.74,4.752-12.439,0-17.179
+                        l-99.707-99.671l99.695-99.671c4.752-4.74,4.752-12.439,0-17.191c-4.752-4.74-12.463-4.74-17.215,0L57.621,111.816
+                        C52.942,116.507,52.942,124.327,57.633,129.007z"/>
+                </svg>
+            </div>
             <div class="booking-system__title">Book Online</div>
         </div>
     </div>
@@ -44,28 +51,35 @@ header("Pragma: no-cache");
                 <!-- <div id="continue-service-select-btn" class="booking-system__button next-button hidden">Continue</div> -->
             </div>
         </div>
-        <div class="tab isInactive isRHS " id="chose-duration"> 
+        <div class="tab isInactive isRHS" id="chose-duration"> 
             <div class="tab__body justify">
                 <div class="tab__inner-body">
                     <div class="time-picker" id="duration-time-picker">
-                        <div class="time-picker__section hours-section">
-                            <div class="time-picker__next time-picker__controll">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(-4.28626e-16 -1 1 -4.28626e-16 3.55271e-15 41.999)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
+                        <div class="time-picker__container">
+                            <div class="time-picker__section hours-section">
+                                <div class="time-picker__next time-picker__controll">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(-4.28626e-16 -1 1 -4.28626e-16 3.55271e-15 41.999)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
+                                </div>
+                                <div class="time-picker__number" data-step="1" data-min="0" data-max="8">00</div>
+                                <div class="time-picker__text">Hours</div>
+                                <div class="time-picker__prev time-picker__controll disabled">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(5.51091e-16 1 -1 5.51091e-16 41.999 -7.10543e-15)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
+                                </div>
                             </div>
-                            <div class="time-picker__number" data-step="1" data-min="1" data-max="8">01</div>
-                            <div class="time-picker__prev time-picker__controll disabled">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(5.51091e-16 1 -1 5.51091e-16 41.999 -7.10543e-15)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
+                            <div class="time-picker__colon">:</div>
+                            <div class="time-picker__section minutes-section">
+                                <div class="time-picker__next time-picker__controll disabled">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(-4.28626e-16 -1 1 -4.28626e-16 3.55271e-15 41.999)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
+                                </div>
+                                <div class="time-picker__number" data-step="30" data-max="30" data-min="0">30</div>
+                                <div class="time-picker__text">Minutes</div>
+                                <div class="time-picker__prev time-picker__controll disabled">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(5.51091e-16 1 -1 5.51091e-16 41.999 -7.10543e-15)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
+                                </div>
                             </div>
                         </div>
-                        <div class="time-picker__colon">:</div>
-                        <div class="time-picker__section minutes-section">
-                            <div class="time-picker__next time-picker__controll">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(-4.28626e-16 -1 1 -4.28626e-16 3.55271e-15 41.999)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
-                            </div>
-                            <div class="time-picker__number" data-step="30" data-max="30" data-min="0">00</div>
-                            <div class="time-picker__prev time-picker__controll disabled">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.999 41.999" style="enable-background:new 0 0 41.999 41.999;" xml:space="preserve" width="512px" height="512px"><g transform="matrix(5.51091e-16 1 -1 5.51091e-16 41.999 -7.10543e-15)"><path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z" data-original="#000000" class="active-path" /></g> </svg>
-                            </div>
+                        <div class="time-picker__warning">
+                                The minimum booking time is 30 minutes
                         </div>
                     </div>
                 </div>
@@ -305,8 +319,8 @@ header("Pragma: no-cache");
                     </div>
                 </div>
                 <div>
-                    <button id="continue-service-select-btn" class="booking-system__button next-button">Continue with current account</button>
-                    <button  class="booking-system__button_light login-as-another">Login as Another User</button>
+                    <button id="continue-service-select-btn" class="booking-system__button next-button">Continue</button>
+                    <button  class="booking-system__button_light login-as-another">Change Account</button>
                 </div>
             </div>
         </div>
@@ -371,10 +385,16 @@ header("Pragma: no-cache");
                         <a id="nav-add-address" class="navigation-item">Add new</a>
                     </div>
                     <div class="boxes-list addresses-list">
-                        <!-- <div class="boxes-list__item address-box address-box__active">
-                            <div class="address-box__first-line">Coconut Grove Apt 24</div>
-                            <div class="address-box__second-line">Miami, Florida 33105</div>
-                        </div> -->
+                        <!-- <div class="boxes-list__item address-box">
+                            <div>
+                                <div class="address-box__first-line">Coconut Grove Apt 24</div>
+                                <div class="address-box__second-line">Miami, Florida 33105</div>
+                            </div>
+                            <div class="unselect">Change</div>
+                        </div>
+                       -->
+                     
+                      
                 
                     </div>
                 </div>
@@ -394,10 +414,46 @@ header("Pragma: no-cache");
                                 <div class="cutom-input__icon"></div>
                                 <input type="text" name="address" tabindex="-1" placeholder="Address">
                             </div>
+                            <div class="custom-input">
+                                <div class="cutom-input__icon"></div>
+                                <input type="text" name="aptnumber" tabindex="-1" autocomplete="off" placeholder="Apartment number">
+                            </div>
                         </form>
                     </div>
                 </div>
                 <button id="add-address-btn" class="booking-system__button next-button">Add new address</button>
+            </div>
+        </div>
+        <div class="tab isInactive isRHS scrollable" id="chose-specialist">
+            <div class="tab__body">
+                <div class="tab__inner-body">
+                    <div class="boxes-list specialists-list">
+                        <div class="lds-roller big blue">
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                        </div>
+                        <!-- <div class="boxes-list__item specialist-box">
+                            <div class="specialist-box__avatar">
+                                <img src="./assets/img/user.svg" alt="avatar">
+                            </div>
+                            <div>
+                                <div class="specialist-box__name">First Avalible</div>
+                                <div class="specialist-box__description">Show All Avalible Times</div>
+                            </div>
+                        </div> -->
+                         <!-- <div class="boxes-list__item  boxes-list__item_active specialist-box">
+                            <div class="specialist-box__avatar">
+                                <img src="./assets/img/user.svg" alt="avatar">
+                            </div>
+                            <div>
+                                <div class="specialist-box__name">Mark Scalise</div>
+                                <div class="specialist-box__description">Service Provider</div>
+                            </div>
+                        </div> -->
+                       
+                        
+                    </div>      
+                </div>
+                <!-- <button id="add-address-btn" class="booking-system__button next-button">Add new address</button> -->
             </div>
         </div>
     </div>
@@ -405,7 +461,7 @@ header("Pragma: no-cache");
 
 <script id="stripe" src="https://js.stripe.com/v3/"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjBX_9vaaJlURp0ekst2J_nQl-2GvU7Oc&libraries=places"></script>
-<script src="assets/js/main.min.js?v=29"></script> 
+<script src="assets/js/main.min.js?v=37"></script> 
  
 <script>  
     // document.addEventListener('keydown', (event) => {

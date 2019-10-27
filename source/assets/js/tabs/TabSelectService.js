@@ -36,6 +36,21 @@ class TabSelectService extends Tab{
                                 this._bookingViewAPI.jumpToSlide(2);
                             }
                         break;
+                        case 'setSpecialistsList': {
+                            const specialists = this._data.data.specialists;
+                            let serviceName = this._service._serviceList[0].serviceName;
+                            // console.log("Recomended Specialists");
+                            // console.log(specialists);
+                            if(specialists.length > 0) {
+                                this._bookingViewAPI.jumpToSlide(12, {
+                                    service: serviceName,
+                                    specialists 
+                                });
+                            } else{
+                                this._bookingViewAPI.jumpToSlide(1, { service: serviceName, specId: 0, enableBackBtn: false });
+                            }
+                            break;
+                        }
                     }
                 }
             } 
@@ -56,9 +71,9 @@ class TabSelectService extends Tab{
     
     preSelectService(){
         let serviceName = this._service._serviceList[0].serviceName;
-        this._bookingViewAPI.slideNext(serviceName);
-        // this._bookingViewAPI.requestSlideNext();
-        // Messanger.sendMessage("selectService", {serviceName});
+        Messanger.sendMessage("getSpecialists", { seriviceName: serviceName });
+        // this._bookingViewAPI.jumpToSlide(12,serviceName);
+        
     }
   
     run(){

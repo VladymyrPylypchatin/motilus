@@ -7,9 +7,11 @@ class TabAddAddress extends Tab {
         this._nav = this._tab.querySelector("#nav-my-address");
         this._nav.addEventListener("click", this.navigationHandler.bind(this));
         this._listenerActivated = false;
+        // this.userAddresses = null; 
     }
-    run() {
+    run(params) {
         if(!this._listenerActivated) this.listen();
+        this._registrationView.setUserAddresses(params.addresses);
     }
 
     listen() {
