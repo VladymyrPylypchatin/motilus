@@ -1017,8 +1017,10 @@ body {
     .address-box .remove.disabled {
       pointer-events: none; }
       .address-box .remove.disabled svg {
+        height: 100%;
         fill: #cfcfcf; }
     .address-box .remove:hover svg {
+      height: 100%;
       fill: red; }
     .address-box .remove svg {
       height: 100%;

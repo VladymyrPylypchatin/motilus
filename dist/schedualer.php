@@ -461,7 +461,7 @@ header("Pragma: no-cache");
 
 <script id="stripe" src="https://js.stripe.com/v3/"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjBX_9vaaJlURp0ekst2J_nQl-2GvU7Oc&libraries=places"></script>
-<script src="assets/js/main.min.js?v=37"></script> 
+<script src="assets/js/main.min.js?v=39"></script> 
  
 <script>  
     // document.addEventListener('keydown', (event) => {

@@ -49,12 +49,14 @@
         &.disabled {
             pointer-events: none;
             svg {
+                height: 100%;
                 fill: rgb(207, 207, 207);
             }
         }
 
         &:hover {
             svg {
+                height: 100%;
                 fill: red;
             }
         }
