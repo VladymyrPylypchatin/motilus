@@ -11,7 +11,7 @@ class TabSelectAccount extends Tab {
             this.listen();
             this.isInited = true;
         }
-        
+        this.enableButton();
         this.enableBackButton();
     }
 
@@ -24,7 +24,7 @@ class TabSelectAccount extends Tab {
                         case "customerIsRepeated":
                             console.dir("Confirmed customer is Repeated");
                             this._bookingViewAPI.jumpToSlide(10);
-                            this.disableBackButton();
+                           // this.disableBackButton();
                             break;
                     }
                 }
@@ -36,7 +36,7 @@ class TabSelectAccount extends Tab {
 
     senodaryButtonHandler() {
         this.disableButton();
-        this.disableBackButton();
+       // this.disableBackButton();
         this._bookingViewAPI.jumpToSlide(3);
     }
     actionButtonHandler() {

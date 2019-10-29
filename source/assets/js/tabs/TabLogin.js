@@ -44,7 +44,7 @@ class TabLogin extends Tab{
     navigationHandler(){
         if(this._bookingViewAPI._status == "ready"){
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpBackToSlide(3);
+            this._bookingViewAPI.jumpBackToSlide(3, false);
         }
     }
     actionButtonHandler(){

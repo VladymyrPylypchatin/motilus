@@ -97,7 +97,7 @@ class BookingView{
         console.log("Slide deactivated");
     }
 
-    async jumpToSlide(slideIndex, params){
+    async jumpToSlide(slideIndex, params, enablehistory = true){
         await this.finishLoading();
 
         this._activeTabIndex = slideIndex;
@@ -111,12 +111,12 @@ class BookingView{
         this._nextTab = this._tabList[this._activeTabIndex + 1];
         
         this.updateTitle();
-        this._status = "ready"
+        this._status = "ready";
         this._activeTab.run(params);
-        this.navHistory.push(this._prevTab);
+        enablehistory ? this.navHistory.push(this._prevTab) : null;
     }
 
-    async jumpBackToSlide(slideIndex){
+    async jumpBackToSlide(slideIndex, enablehistory = true){
         await this.finishLoading();
 
         this._activeTabIndex = slideIndex;
@@ -132,7 +132,7 @@ class BookingView{
         this.updateTitle();
         this._status = "ready"
         this._activeTab.run();
-        this.navHistory.push(this._prevTab);
+        enablehistory ? this.navHistory.push(this._prevTab): null;
     }
 
     async slideBack() {

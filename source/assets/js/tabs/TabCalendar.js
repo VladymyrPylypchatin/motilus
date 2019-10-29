@@ -57,7 +57,7 @@ class TabCalendar extends Tab{
         if(this._bookingViewAPI._status == "ready"){
             this._bookingViewAPI._status == "proccesing"
             this._bookingViewAPI.startLoading();
-            this.disableBackButton();
+            // this.disableBackButton();
             this.disableButton();
 
             if(this._bookingViewAPI._userAuthorized){

@@ -9,8 +9,9 @@ class TabCustomerInfo extends Tab{
         this._listenActivated = false;
     }
     run(){
-        console.dir("TabCallendar");
+        console.dir("Customer Info!!!");
         if(!this._listenActivated) this.listen();
+        // this.enableButton();
     }
 
     listen() {
@@ -35,7 +36,7 @@ class TabCustomerInfo extends Tab{
     navigationHandler(){
         if(this._bookingViewAPI._status == "ready"){
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpToSlide(8);
+            this._bookingViewAPI.jumpToSlide(8, null, false);
         }
     }
     async actionButtonHandler(){
@@ -45,15 +46,15 @@ class TabCustomerInfo extends Tab{
 
             if(await this._registrationView.validateForm()){
                 this._bookingViewAPI.startLoading();
-                this._bookingViewAPI._status = "proccesing"
+                this._bookingViewAPI._status = "proccesing";
 
                 // this._registrationView.clearInputs();
                 this._registrationView.createUser();
             } else {
-                this._bookingViewAPI._status = "proccesing"
+                this._bookingViewAPI._status = "proccesing";
                 await this._bookingViewAPI._notificator.erraseErorr(this._registrationView._errors);
                 this._registrationView._errors = [];
-                this._bookingViewAPI._status = "ready"
+                this._bookingViewAPI._status = "ready";
                 this.enableButton();
             }
         }

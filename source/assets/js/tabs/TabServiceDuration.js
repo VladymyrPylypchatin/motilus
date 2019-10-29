@@ -15,12 +15,7 @@ class TabServiceDuration extends Tab {
         }
 
         console.dir("TabServiceDuration");
-        // if (this._args.specId) {
-            this.enableBackButton();
-        // } else {
-        //     this.disableBackButton();
-        // } 
-      
+        this.enableBackButton();
     }
 
     listen() {

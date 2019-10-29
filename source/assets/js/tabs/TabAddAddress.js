@@ -38,7 +38,7 @@ class TabAddAddress extends Tab {
     navigationHandler() {
         if (this._bookingViewAPI._status == "ready") {
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpBackToSlide(10);
+            this._bookingViewAPI.jumpBackToSlide(10, false);
         }
     }
     async actionButtonHandler() {

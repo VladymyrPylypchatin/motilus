@@ -48,12 +48,13 @@ class TabSelectAddress extends Tab {
     navigationHandler() {
         if (this._bookingViewAPI._status == "ready") {
             this._bookingViewAPI._status = "proccesing";
-            this._bookingViewAPI.jumpToSlide(11, {addresses: this.selectAddressView._addressesData});
+            this._bookingViewAPI.jumpToSlide(11, {addresses: this.selectAddressView._addressesData}, false);
             this.hideButton();
         }
     }
 
     actionButtonHandler() {
+        this.disableBackButton();
         this.disableButton();
         this._bookingViewAPI.startLoading();
         Messanger.sendMessage("setUserAddress", {address: this.selectAddressView._selectedAddress});
