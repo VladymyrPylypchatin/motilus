@@ -424,7 +424,7 @@ header("Pragma: no-cache");
                 <button id="add-address-btn" class="booking-system__button next-button">Add new address</button>
             </div>
         </div>
-        <div class="tab isInactive isRHS scrollable" id="chose-specialist">
+        <div class="tab isActive scrollable" id="chose-specialist">
             <div class="tab__body">
                 <div class="tab__inner-body">
                     <div class="boxes-list specialists-list">
