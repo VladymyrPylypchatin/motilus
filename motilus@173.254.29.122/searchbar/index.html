@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/Fonts/Avenir/stylesheet.css">
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .search-results {
+            box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            border-radius: 10px;
+            max-height: 240px;
+            overflow: hidden;
+        }
+        .search-results .results-container {
+            max-height: 240px;
+            overflow: auto;
+        }
+
+        .search-results .result {
+            padding: 10px 20px;
+            background: rgb(246, 248, 255);
+            font-family: 'Avenir';
+            font-size: 16px;
+        }
+
+        .search-results .result:not(:last-child) {
+            border-bottom: 1px solid rgb(145, 145, 145);
+        }
+
+        .search-results .result:hover {
+            background: rgb(184, 187, 197);
+            cursor: pointer;
+        }
+    </style>
+    <div class="search-results">
+        <div class="results-container"></div>
+    </div>
+    <script>
+        'use strict';
+        class Results {
+            constructor() {
+                this.resultsArray = [];
+                this.resultsListElem = document.querySelector(".results-container");
+            }
+
+            setResults(results) {
+                this.resultsArray = results;
+                this.renderList();
+            }
+
+            clickHandler(index) {
+                const result = this.resultsArray[index];
+                const message = {action: "SelectedService", result };
+                console.log(message);
+                parent.postMessage(JSON.stringify(message), "*");
+            }
+
+            renderList() {
+                this.resultsListElem.innerHTML = "";
+                if(this.resultsArray.length > 0) {
+                    this.resultsArray.forEach((res, index) => {
+                        this.renderResult(res, index);
+                    });
+                } else {
+                    this.renderDumbResult();
+                }
+            }
+
+            renderDumbResult() {
+                const resultElem = document.createElement("div");
+                resultElem.classList.add("result");
+                resultElem.innerHTML = "No matches";
+                this.resultsListElem.appendChild(resultElem);
+            }
+
+            renderResult(result, index) {
+                const resultElem = document.createElement("div");
+                resultElem.classList.add("result");
+                resultElem.setAttribute("data-id", index);
+                resultElem.innerHTML = result.title;
+                resultElem.addEventListener("click", () => this.clickHandler(index));
+                this.resultsListElem.appendChild(resultElem);
+            }
+
+        }
+    </script>
+    <script>
+        const resultsManager = new Results();
+        // resultsManager.setResults([
+        //     {_id: 1, title: "Child Care"},
+        //     {_id: 1, title: "Child Care"},
+        //     {_id: 1, title: "Child Care"},
+        //     {_id: 1, title: "Child Care"},
+        //     {_id: 1, title: "Child Care"},
+        //     {_id: 1, title: "Child Care"},
+        //     {_id: 1, title: "Child Care"},
+        // ]);
+
+        window.addEventListener('message', (event) => {
+            try {
+                let message = JSON.parse(event.data);
+                let action = message.action;
+                switch (action) {
+                    case "setResults":
+                        resultsManager.setResults(message.results);
+                        break;
+                    
+                }
+            } catch (ex) {
+                console.log(ex);
+            }
+            console.log(`Received message: ${event.data}`);
+        });
+    </script>
+</body>
+
+</html>

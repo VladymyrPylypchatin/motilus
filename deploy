@@ -1,0 +1,23 @@
+#!/bin/bash
+echo ‘Deploying’
+rsync -a -avz --progress --exclude 'bookingsystem/node_modules' --exclude 'bookingsystem/source' --exclude '.git' --exclude '.env' . vova@165.227.221.134:vova
+# ssh vova@165.227.221.134 "
+# echo 'connected to server' \
+echo 'Building bookings system'
+cd bookingsystem
+gulp build
+echo 'Building finished'
+echo 'Saving to a cloud server'
+git add .
+git commit -m "deploy"
+git push origin master
+echo 'Deplooying finished'
+# && echo ‘instaling node modules’ \
+# && cd api.privacyapp.pp.ua \
+# && ls \
+# && npm install \
+# && echo ‘node modules installed’ \
+# && (pm2 delete app || true) \
+# && pm2 start app.js \
+# && echo 'app started successfully with pm2.' "
+# exit
