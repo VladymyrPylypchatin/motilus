@@ -171,8 +171,9 @@ gulp.task('svgSprite', function () {
 
 
 // Clean build
-gulp.task('clean', function () {
-    return del.sync('dist');
+gulp.task('clean', function (done) {
+    del.sync('dist');
+    done();
 });
 
 //Clean cahe
@@ -188,21 +189,7 @@ gulp.task('html', function () {
 });
 
 //Build
-gulp.task('build',  gulp.parallel('clean', 'html', 'sass', 'scripts-libs',  'scripts', 'img', 'fonts', function () {
-    // var buildCss = gulp.src([
-    //     'source/assets/css/main.css',
-    //     'source/assets/css/libs.min.css',
-    // ])
-    //     .pipe(gulp.dest('dist/assets/css'));
-
-    // var buildFonts = gulp.src('source/assets/fonts/**/*')
-    //     .pipe(gulp.dest('dist/assets/fonts'));
-
-    // var buildJs = gulp.src('source/assets/js/**/*')
-    //     .pipe(gulp.dest('dist/assets/js'));
-
-    // var buildHTML = gulp.src('source/*.html').pipe(gulp.dest(''));
-}));
+gulp.task('build',  gulp.series('clean', 'html', 'sass',  'scripts', 'img', 'fonts'));
 
 
 //Watch
