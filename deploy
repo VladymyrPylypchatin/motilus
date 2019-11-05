@@ -1,17 +1,28 @@
 #!/bin/bash
-echo ‘Deploying’
-rsync -a -avz --progress --exclude 'bookingsystem/node_modules' --exclude 'bookingsystem/source' --exclude '.git' --exclude '.env' . vova@165.227.221.134:vova
-# ssh vova@165.227.221.134 "
-# echo 'connected to server' \
-echo 'Building bookings system'
+echo 'Deploying'
+echo "Building bookings system..."
 cd bookingsystem
 gulp build
-echo 'Building finished'
-echo 'Saving to a cloud server'
+cd ..
+echo "Building finished"
+echo "Saving to the cloud repository..."
 git add .
-git commit -m "deploy"
+git commit -m "fixes";
 git push origin master
-echo 'Deplooying finished'
+echo "Saved"
+echo "Publishing to live server..."
+expect sync.sh
+exit
+
+# puts "Saved to cloud"
+# puts "Publisihng on live server"
+
+# eval spawn rsync -a -avz --progress  --exclude "/bookingsystem/node_modules" --exclude "/bookingsystem/source" --exclude ".git" . motilus:vova
+# expect "password:"
+# send "Motilhosting0!"
+# send "\n"
+# interact
+
 # && echo ‘instaling node modules’ \
 # && cd api.privacyapp.pp.ua \
 # && ls \
