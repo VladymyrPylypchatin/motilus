@@ -1,27 +1,27 @@
-class TabSelectService extends Tab{
-    constructor(id, title, BookingViewAPI){
+class TabSelectService extends Tab {
+    constructor(id, title, BookingViewAPI) {
         super(id, title, BookingViewAPI);
-    
+
         this._service = new ServiceView(".service-list", this);
     }
-    
-    listen(){
+
+    listen() {
         window.addEventListener("message", async (event) => {
-            try{
-                if(event.data != null){
+            try {
+                if (event.data != null) {
                     this._data = JSON.parse(event.data, JSON.dateParser);
-                    switch(this._data.action){                      
+                    switch (this._data.action) {
                         case "preSelectedService":
                             console.log("PreSelectedService");
                             this._service.setServiceList(this._data.data);
                             this.preSelectService();
-                        break;
+                            break;
                         case "servicesList":
                             console.dir(this._data.data);
                             this._service.setServiceList(this._data.data);
                             this._service.renderServiceList();
                             this._bookingViewAPI.hideLodaer();
-                        break;
+                            break;
 
                         case "asap_booking":
                             //If ASAP Booking then calendar tab is skiped
@@ -30,53 +30,50 @@ class TabSelectService extends Tab{
                             console.log(this._bookingViewAPI._userAuthorized);
                             await this._bookingViewAPI.finishLoading();
 
-                            if(this._bookingViewAPI._userAuthorized){
+                            if (this._bookingViewAPI._userAuthorized) {
                                 this._bookingViewAPI.jumpToSlide(5);
                             } else {
                                 this._bookingViewAPI.jumpToSlide(2);
                             }
-                        break;
+                            break;
                         case 'setSpecialistsList': {
                             const specialists = this._data.data.specialists;
                             let serviceName = this._service._serviceList[0].serviceName;
                             // console.log("Recomended Specialists");
                             // console.log(specialists);
-                            if(specialists.length > 0) {
-                                this._bookingViewAPI.jumpToSlide(12, {
-                                    service: serviceName,
-                                    specialists 
-                                });
-                            } else{
-                                this._bookingViewAPI.jumpToSlide(1, { service: serviceName, specId: 0, enableBackBtn: false });
-                            }
+
+                            this._bookingViewAPI.jumpToSlide(12, {
+                                service: serviceName,
+                                specialists
+                            });
+
                             break;
                         }
                     }
                 }
-            } 
-            catch(e){
+            } catch (e) {
                 // console.log("wrong message");
             }
         });
     }
 
-   
-    actionButtonHandler(service){
-        if(this._bookingViewAPI._status == "ready"){
+
+    actionButtonHandler(service) {
+        if (this._bookingViewAPI._status == "ready") {
             this._bookingViewAPI.requestSlideNext();
             this._bookingViewAPI.startLoading();
             Messanger.sendMessage("selectService", {serviceName: service});
         }
     }
-    
-    preSelectService(){
+
+    preSelectService() {
         let serviceName = this._service._serviceList[0].serviceName;
-        Messanger.sendMessage("getSpecialists", { seriviceName: serviceName });
+        Messanger.sendMessage("getSpecialists", {seriviceName: serviceName});
         // this._bookingViewAPI.jumpToSlide(12,serviceName);
-        
+
     }
-  
-    run(){
+
+    run() {
         this.listen();
         Messanger.sendMessage("getServices", {});
         Messanger.sendMessage("getServiceFromURL", {});

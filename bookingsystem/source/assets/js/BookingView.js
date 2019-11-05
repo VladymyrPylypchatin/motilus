@@ -84,7 +84,7 @@ class BookingView{
         
 
         this.updateTitle();
-        this._status = "ready"
+        this._status = "ready";
         this._activeTab.run(params);
         this.navHistory.push(this._prevTab);
         // console.dir(this._activeTab);

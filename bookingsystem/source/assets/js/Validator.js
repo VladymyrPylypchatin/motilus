@@ -142,4 +142,27 @@ class Validator{
         });
         return !result;
     }
+
+    static async validateSpecId(specId) {
+        Messanger.sendMessage("validateSpecId", {specId});
+        return new Promise((resolve, reject) => {
+            window.addEventListener("message", async function handler(event){
+                try{
+                    if(event.data != null){
+                        let data = JSON.parse(event.data, JSON.dateParser);
+                        switch(data.action){
+                            case "validateSpecId":
+                                    let result = data.data.result;
+                                    window.removeEventListener("message", handler);
+                                    resolve(result);
+                                break;
+                        }
+                    }
+                }
+                catch(e){
+                    // console.log("wrong message");
+                }
+            });
+        });
+    }
 }

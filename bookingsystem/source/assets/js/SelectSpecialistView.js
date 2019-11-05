@@ -9,6 +9,12 @@ class SelectSpecialistView {
     setSpecialists(specilistsList) {
         this.specilistsList = specilistsList;
     }
+
+    pushSpecialist(spec) {
+        if (!this.specilistsList.some(specObj => specObj._id === spec._id)) {
+            this.specilistsList.unshift(spec);
+        }
+    }
     renderList() {
         this._listElement.innerHTML = '';
         this.renderGeneralSpec();
@@ -56,6 +62,14 @@ class SelectSpecialistView {
         event.currentTarget.classList.add("boxes-list__item_active");
         this._selectedSpec = event.currentTarget.getAttribute("data-spec");
         this._tabAPI.selectSpecialist(this._selectedSpec);
+    }
+
+    hideList() {
+        this._listElement.classList.add("hidden");
+    }
+
+    showList() {
+        this._listElement.classList.remove('hidden');
     }
 
 

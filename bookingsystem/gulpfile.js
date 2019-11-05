@@ -60,6 +60,7 @@ gulp.task('scripts', function () {
         'source/assets/js/TimePickerView.js',
         'source/assets/js/AddAddressView.js',
         'source/assets/js/SelectSpecialistView.js',
+        'source/assets/js/views/AddSpecialistView.js',
         'source/assets/js/Tab.js',
         'source/assets/js/tabs/TabSelectService.js',
         'source/assets/js/tabs/TabCalendar.js',
@@ -103,7 +104,7 @@ gulp.task('scripts-libs', function () {
 //Browser sync
 gulp.task('browser-sync', function () {
     browserSync({ // 
-        proxy: 'http://motilus.booking/',
+        proxy: 'http://motilus/',
         port: 3000,
         notify: true // 
     });
