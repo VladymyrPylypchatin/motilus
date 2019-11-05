@@ -2,6 +2,7 @@ class TabSelectSpecialist extends Tab {
     constructor(id, title, BookingViewAPI) {
         super(id, title, BookingViewAPI);
         this.selectSpecialistView = new SelectSpecialistView(this._tab, this);
+        this.addSpecialistView = new AddSpecialistView(this._tab, this, this.selectSpecialistView, BookingViewAPI);
         this._data = null;
         this._serviceName = null;
         this._listenerActivated = false;
@@ -13,7 +14,13 @@ class TabSelectSpecialist extends Tab {
                 if (event.data != null) {
                     this._data = JSON.parse(event.data, JSON.dateParser);
                     switch (this._data.action) {
-
+                        case "SpecialistRelationAdded":
+                            console.log('Specialist Relation Added');
+                            this.selectSpecialistView.pushSpecialist(this._data.data.specialist);
+                            this.selectSpecialistView.renderList();
+                            this.addSpecialistView.hideCard();
+                            await this._bookingViewAPI.finishLoading();
+                            break;
                     }
                 }
             }
@@ -22,6 +29,7 @@ class TabSelectSpecialist extends Tab {
         });
         this._listenerActivated = true;
     }
+
     run(params) {
         if (!this._listenerActivated) this.listen();
         if (!this._serviceName) {

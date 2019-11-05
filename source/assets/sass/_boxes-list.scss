@@ -1,4 +1,7 @@
 .boxes-list {
+    &.hidden {
+        display: none;
+    }
     &__item {
         margin: 5px 0;
         padding: 15px 20px;

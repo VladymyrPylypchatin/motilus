@@ -55,7 +55,7 @@ class TabLogin extends Tab{
             if(this._loginView.validateForm()){
                 // this.disableButton();
                 this._bookingViewAPI.startLoading();
-                this._loginView._status == "proccesing"
+                // this._loginView._status == "proccesing";
 
                 // this._registrationView.clearInputs();
                 this._loginView.login();
