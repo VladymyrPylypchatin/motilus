@@ -1,6 +1,7 @@
 class TabSelectSpecialist extends Tab {
     constructor(id, title, BookingViewAPI) {
         super(id, title, BookingViewAPI);
+        this.addSpecialistView = {};
         this.selectSpecialistView = new SelectSpecialistView(this._tab, this, this.addSpecialistView);
         this.addSpecialistView = new AddSpecialistView(this._tab, this, this.selectSpecialistView, BookingViewAPI);
         this._data = null;
