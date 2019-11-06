@@ -84,6 +84,7 @@ class AddSpecialistView {
             code.push(this.inputs[i].value);
         }
         this.inputValues = code.join('');
+        console.log(this.inputValues);
     }
 
 
@@ -91,6 +92,12 @@ class AddSpecialistView {
         this.addSpecCardElem.classList.remove("hidden");
         this.triggerElem.classList.add("hidden");
         this.specListApi.hideList();
+
+        console.log('showSpecCard');
+        this.btn.classList.remove("disabled");
+        for (let i = 0; i < this.inputs.length; i++){
+            this.inputs[i].value = '';
+        }
     }
 
     hideCard() {

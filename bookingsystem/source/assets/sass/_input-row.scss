@@ -11,6 +11,10 @@
     text-align: center;
     color:black;
     font-size: 18px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #9c9c9c;
 
     &::-webkit-input-placeholder {
       color:grey;
