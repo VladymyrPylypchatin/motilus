@@ -58,7 +58,7 @@ class SelectSpecialistView {
         `;
         specElem.addEventListener("click", () => {
             console.log(this.addSpecAPI);
-            this.addSpecAPI.showSpecCard();
+            this._tabAPI.openAddSpecialist();
         });
         this._listElement.appendChild(specElem);
     }

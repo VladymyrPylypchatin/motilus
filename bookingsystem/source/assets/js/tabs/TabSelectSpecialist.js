@@ -42,6 +42,10 @@ class TabSelectSpecialist extends Tab {
         // console.log({this._serviceName});
     }
 
+    openAddSpecialist = () => {
+        this.addSpecialistView.showSpecCard();
+    }
+
     selectSpecialist(specId) {
         this._bookingViewAPI.jumpToSlide(1, { service: this._serviceName, specId, enableBackBtn: true });
     }
