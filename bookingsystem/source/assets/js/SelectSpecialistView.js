@@ -38,9 +38,8 @@ class SelectSpecialistView {
                                 <div class="specialist-box__name">Best Available Specialist</div>
                             </div>
         `;
-        specElem.addEventListener("click", () => {
-            this.addSpecAPI.showSpecCard();
-        });
+        
+        specElem.addEventListener("click", this.specClickHandler.bind(this));
         this._listElement.appendChild(specElem);
     }
 
@@ -57,7 +56,10 @@ class SelectSpecialistView {
                                 <div class="specialist-box__name">Book another specialist</div>
                             </div>
         `;
-        specElem.addEventListener("click", this.specClickHandler.bind(this));
+        specElem.addEventListener("click", () => {
+            console.log(this.addSpecAPI);
+            this.addSpecAPI.showSpecCard();
+        });
         this._listElement.appendChild(specElem);
     }
 
