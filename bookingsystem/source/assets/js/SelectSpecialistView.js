@@ -30,7 +30,7 @@ class SelectSpecialistView {
         specElem.setAttribute("data-spec", 0);
         specElem.innerHTML = `
                             <div class="specialist-box__avatar">
-                                <img src="./assets/img/user.svg" alt="avatar">
+                                <img src="./assets/img/v.png" alt="avatar">
                             </div>
                             <div>
                                 <div class="specialist-box__name">Best Available Specialist</div>
