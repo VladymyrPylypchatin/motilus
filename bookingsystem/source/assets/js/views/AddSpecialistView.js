@@ -26,7 +26,7 @@ class AddSpecialistView {
     }
 
     init() {
-        this.triggerElem.addEventListener("click", this.showSpecCard.bind(this));
+        // this.triggerElem.addEventListener("click", this.showSpecCard.bind(this));
         this.closeBtnElem.addEventListener('click', this.hideCard.bind(this));
         this.btn.addEventListener('click', this.btnHandler.bind(this));
 
