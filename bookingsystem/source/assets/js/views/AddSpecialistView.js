@@ -83,7 +83,7 @@ class AddSpecialistView {
         for (let i = 0; i < this.inputs.length; i++){
             code.push(this.inputs[i].value);
         }
-        this.inputValues = parseInt(code.join(''));
+        this.inputValues = code.join('');
     }
 
 
