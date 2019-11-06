@@ -53,6 +53,7 @@
     "browserify": "^16.4.0",
     "core-js": "^3.1.4",
     "gulp-browserify": "^0.5.1",
+    "gulp-cli": "^2.2.0",
     "webpack": "^4.39.1"
   }
 }

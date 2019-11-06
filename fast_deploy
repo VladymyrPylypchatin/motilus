@@ -1,5 +1,10 @@
 #!/bin/bash
 echo 'Deploying'
+echo "Saving to the cloud repository..."
+git add .
+git commit -m "fixes";
+git push origin master
+echo "Saved"
 echo "Publishing to live server..."
 expect sync.sh
 exit
