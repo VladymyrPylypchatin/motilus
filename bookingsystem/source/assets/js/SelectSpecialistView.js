@@ -1,8 +1,9 @@
 class SelectSpecialistView {
-    constructor(tabElement, tabAPI) {
+    constructor(tabElement, tabAPI, addSpecAPI) {
         this.specilistsList = null;
         this._tabElement = tabElement;
         this._tabAPI = tabAPI;
+        this.addSpecAPI = addSpecAPI;
         this._selectedSpec = null;
         this._listElement = this._tabElement.querySelector(".specialists-list");
     }
@@ -18,6 +19,7 @@ class SelectSpecialistView {
     renderList() {
         this._listElement.innerHTML = '';
         this.renderGeneralSpec();
+        this.renderBookAnoutherSpec();
         this.specilistsList.forEach((spec) => {
             this.renderSpecialist(spec);
         });
@@ -30,15 +32,35 @@ class SelectSpecialistView {
         specElem.setAttribute("data-spec", 0);
         specElem.innerHTML = `
                             <div class="specialist-box__avatar">
-                                <img src="./assets/img/user.svg" alt="avatar">
+                                <img src="./assets/img/v.png" alt="avatar">
                             </div>
                             <div>
                                 <div class="specialist-box__name">Best Available Specialist</div>
                             </div>
         `;
+        specElem.addEventListener("click", () => {
+            this.addSpecAPI.showSpecCard();
+        });
+        this._listElement.appendChild(specElem);
+    }
+
+    renderBookAnoutherSpec(){
+        let specElem = document.createElement("div");
+        specElem.classList.add("boxes-list__item");
+        specElem.classList.add("specialist-box");
+        specElem.setAttribute("data-spec", 0);
+        specElem.innerHTML = `
+                            <div class="specialist-box__avatar">
+                                <img src="./assets/img/v.png" alt="avatar">
+                            </div>
+                            <div>
+                                <div class="specialist-box__name">Book another specialist</div>
+                            </div>
+        `;
         specElem.addEventListener("click", this.specClickHandler.bind(this));
         this._listElement.appendChild(specElem);
     }
+
     renderSpecialist(spec) {
         let specElem = document.createElement("div");
         specElem.classList.add("boxes-list__item");

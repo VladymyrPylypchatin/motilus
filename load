@@ -1,0 +1,7 @@
+#!/bin/bash
+echo 'Loading...';
+git add .
+git commit -m "sync commit"
+git pull origin master
+git add .
+git commit -m "sync commit"
