@@ -13,7 +13,7 @@ class BookingStausView{
     
     async countDown(){
         let str = "pleas weight shile your booking being placed";
-        for(let i = 4; i >= 0; i--){
+        for(let i = 3; i >= 0; i--){
             // console.dir(this._image);
             this._image.innerHTML = i;
             await sleep(1000);
