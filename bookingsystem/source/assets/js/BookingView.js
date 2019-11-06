@@ -4,7 +4,7 @@ class BookingView{
         this._status = "ready";
         this._userAuthorized = false;
         this._tabList = [
-            new TabSelectService("select-service", "Book Online 2222", this), //0
+            new TabSelectService("select-service", "Book Online", this), //0
             new TabServiceDuration("chose-duration", "Choose Your Service Duration", this), //1
             new TabCalendar("chose-datetime", "Choose a Date & Time that Works for You", this), //2
             new TabCustomerInfo("customer-info", "CUSTOMER INFORMATION", this), //3
@@ -16,7 +16,7 @@ class BookingView{
             new TabError("booking-error", "Booking Status", this), //9
             new TabSelectAddress("select-address", "Choose Your Service Address", this), //10
             new TabAddAddress("add-address", "Add new address for service", this), //11
-            new TabSelectSpecialist("chose-specialist", "Select Your Specialist 2222", this), //12
+            new TabSelectSpecialist("chose-specialist", "Select Your Specialist", this), //12
 
         ];
         this._activeTabIndex = 0;
