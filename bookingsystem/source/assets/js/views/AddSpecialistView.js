@@ -1,7 +1,7 @@
 class AddSpecialistView {
     constructor(tabElem, tabAPI, specListApi, bookingApi) {
         this.addSpecCardElem = tabElem.querySelector(".add-specialist-form");
-        this.triggerElem = tabElem.querySelector(".add-specialist-trigger");
+        // this.triggerElem = tabElem.querySelector(".add-specialist-trigger");
         this.closeBtnElem = tabElem.querySelector(".close");
         this.inputsWrap = tabElem.querySelector(".input-row");
         this.inputs = tabElem.querySelectorAll(".input-row input");
@@ -90,7 +90,7 @@ class AddSpecialistView {
 
     showSpecCard() {
         this.addSpecCardElem.classList.remove("hidden");
-        this.triggerElem.classList.add("hidden");
+        // this.triggerElem.classList.add("hidden");
         this.specListApi.hideList();
 
         console.log('showSpecCard');
@@ -102,7 +102,7 @@ class AddSpecialistView {
 
     hideCard() {
         this.addSpecCardElem.classList.add("hidden");
-        this.triggerElem.classList.remove('hidden');
+        // this.triggerElem.classList.remove('hidden');
         this.specListApi.showList();
     }
 
@@ -124,7 +124,7 @@ class AddSpecialistView {
 
     finishAdding() {
         this.addSpecCardElem.classList.add("hidden");
-        this.triggerElem.classList.remove('hidden');
+        // this.triggerElem.classList.remove('hidden');
 
     }
 
