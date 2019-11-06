@@ -42,7 +42,7 @@ class TabSelectSpecialist extends Tab {
         // console.log({this._serviceName});
     }
 
-    openAddSpecialist = () => {
+    openAddSpecialist() {
         this.addSpecialistView.showSpecCard();
     }
 
