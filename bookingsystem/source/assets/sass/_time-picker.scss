@@ -1,52 +1,79 @@
 .time-picker {
-    margin-bottom: 40px;
-    &__container {
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-        user-select: none;
-    }
-    &__section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    &__number {
-        font-size: 65px;
-        color: black;
-    }
-    &__colon {
-        font-size: 65px;
-        display: flex;
-        align-items: center;
-        padding-bottom: 15px;
-        margin: 0 10px;
-        color: black;
-    }
+  margin-bottom: 40px;
 
-    &__controll {
-        height: 25px;
-        width: 25px;
-        cursor: pointer;
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    user-select: none;
+  }
 
-        svg {
-            fill: #d4caca;
-            height: 100%;
-            width: 100%;
-        }
-    }
+  &__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    &__text {
-        margin-bottom: 10px;
-    }
+  &__number {
+    font-size: 65px;
+    color: black;
+  }
 
-    &__warning {
-        margin-top: 20px;
-        text-align: center;
-    }
+  &__colon {
+    font-size: 65px;
+    display: flex;
+    align-items: flex-start;
+    margin: 0 10px;
+    color: black;
+    line-height: 1;
+  }
 
-    .disabled {
-        opacity: 0;
-        pointer-events: none;
+  &__controll {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+
+    svg {
+      fill: #d4caca;
+      height: 100%;
+      width: 100%;
     }
+  }
+
+  &__text {
+    margin-bottom: 10px;
+  }
+
+  &__warning {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.time-picker__select {
+  width: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+  padding-bottom: 35px;
+  box-sizing: border-box;
+
+  .time-picker__controll {
+    width: 100%;
+    margin-bottom: 3px;
+    margin-top: 3px;
+
+  }
+
+  .SmallerNone {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
