@@ -1,0 +1,24 @@
+#!/bin/bash
+echo 'Deploying'
+echo "Publishing to live server..."
+expect sync.sh
+exit
+
+# puts "Saved to cloud"
+# puts "Publisihng on live server"
+
+# eval spawn rsync -a -avz --progress  --exclude "/bookingsystem/node_modules" --exclude "/bookingsystem/source" --exclude ".git" . motilus:vova
+# expect "password:"
+# send "Motilhosting0!"
+# send "\n"
+# interact
+
+# && echo ‘instaling node modules’ \
+# && cd api.privacyapp.pp.ua \
+# && ls \
+# && npm install \
+# && echo ‘node modules installed’ \
+# && (pm2 delete app || true) \
+# && pm2 start app.js \
+# && echo 'app started successfully with pm2.' "
+# exit

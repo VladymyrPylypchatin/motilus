@@ -1,1 +1,50 @@
-Hello World!sdfsdfsdfsdf
+<link rel="stylesheet" href="./style.css?v=13">
+<div class="menu">
+    <div class="menu-header">
+        <div class="menu-header__back-btn hidden">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px" viewBox="0 0 477.175 477.175" style="enable-background:new 0 0 477.175 477.175;"
+                xml:space="preserve">
+                <g>
+                    <path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
+               c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z" />
+                </g>
+            </svg>
+        </div>
+        <div class="menu-header__title">Child Care</div>
+    </div>
+    <div class="menu-body">
+        <!-- <div class="menu-item disabled">
+            <span>Servie Name</span>
+            <span>Coming soon</span>
+        </div> -->
+    </div>
+</div>
+
+<script src="./main.js?v=21"></script>
+<script>
+    let categoryManager = new CategoryManager();
+    // categoryManager.setCategoryData('My category', [1, 234, 234, 324, 234, 324 , 234, 234]);
+    // categoryManager.renderCategory();
+
+    window.addEventListener('message', (event) => {
+        try {
+            let message = event.data;
+            let action = message.action;
+            switch (action) {
+                case 'setCategories':
+                    console.log(message);
+                    categoryManager.setCategoryData(message.data.categoryName, message.data.services, message.data.allServices);
+                    if(message.data.services.length)
+                        categoryManager.render('cat');
+                    else
+                        categoryManager.render('renderBareItems');
+
+                    break;
+            }
+        } catch (ex) {
+            console.log(ex);
+        }
+        console.log(`Received message: ${event.data}`);
+    });
+</script>
