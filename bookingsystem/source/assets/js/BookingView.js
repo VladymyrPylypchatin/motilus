@@ -14,8 +14,8 @@ class BookingView{
             new TabBookingStaus("booking-status", "Booking Status", this), //7
             new TabLogin("login", "Login", this), //8
             new TabError("booking-error", "Booking Status", this), //9
-            new TabSelectAddress("select-address", "Choose Your Service Address", this), //10
-            new TabAddAddress("add-address", "Select Address", this), //11
+            new TabSelectAddress("select-address", "Select Address", this), //10
+            new TabAddAddress("add-address", "Add New", this), //11
             new TabSelectSpecialist("chose-specialist", "Select Your Specialist", this), //12
 
         ];
