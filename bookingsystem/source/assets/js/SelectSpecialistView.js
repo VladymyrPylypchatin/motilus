@@ -18,11 +18,11 @@ class SelectSpecialistView {
     }
     renderList() {
         this._listElement.innerHTML = '';
-        this.renderSectionTitle('Best Available Specialist');
+        this.renderSectionTitle('Motil Match');
         this.renderGeneralSpec();
         this.renderSectionTitle('Find A Specialist');
         this.renderBookAnoutherSpec();
-        if(this.setSpecialists.length) this.renderSectionTitle('My Specialists');
+        if(this.specilistsList.length) this.renderSectionTitle('My Specialists');
         this.specilistsList.forEach((spec) => {
             this.renderSpecialist(spec);
         });
