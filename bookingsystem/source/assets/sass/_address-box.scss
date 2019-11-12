@@ -3,10 +3,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 72px;
+    min-height: 72px;
     box-sizing: border-box;
     transform: translateY(0);
     will-change: height;
+    background-color: #ffffff;
+
+    &__first-line{
+        margin-bottom: 5px;
+    }
+
 
     &__active {
         // border-color:  #000dff;
@@ -20,6 +26,8 @@
             display: none !important;
         }
     }
+
+
     
     &.hidden-animation {
         // opacity: 0;
@@ -63,8 +71,9 @@
 
         svg {
             height: 100%;
-            width: 100%;
+            //width: 100%;
             fill: #000DFF;
+
         }
     }
 
