@@ -18,8 +18,11 @@ class SelectSpecialistView {
     }
     renderList() {
         this._listElement.innerHTML = '';
+        this.renderSectionTitle('Best Available Specialist');
         this.renderGeneralSpec();
+        this.renderSectionTitle('Find A Specialist');
         this.renderBookAnoutherSpec();
+        if(this.setSpecialists.length) this.renderSectionTitle('My Specialists');
         this.specilistsList.forEach((spec) => {
             this.renderSpecialist(spec);
         });
@@ -80,6 +83,12 @@ class SelectSpecialistView {
         this._listElement.appendChild(specElem);
     }
 
+    renderSectionTitle(text) {
+        const title = document.createElement('div');
+        title.classList.add('boxes-list__section-header');
+        title.innerHTML = text;
+        this._listElement.appendChild(title);
+    }
     specClickHandler(event) {
         const specId = event.currentTarget.getAttribute("data-address");
         this._listElement.querySelectorAll('.address-box').forEach(box => box.classList.remove("boxes-list__item_active"));

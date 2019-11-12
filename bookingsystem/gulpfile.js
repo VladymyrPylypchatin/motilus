@@ -104,7 +104,7 @@ gulp.task('scripts-libs', function () {
 //Browser sync
 gulp.task('browser-sync', function () {
     browserSync({ // 
-        proxy: 'http://motilus/',
+        proxy: 'http://motilus.booking/',
         port: 3000,
         notify: true // 
     });
