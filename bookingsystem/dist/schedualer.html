@@ -512,7 +512,7 @@
                     <button id="add-address-btn" class="booking-system__button next-button">Add New</button>
                 </div>
             </div>
-            <div class="tab isInactive isRHS scrollable" id="chose-specialist">
+            <div class="tab isActive scrollable" id="chose-specialist">
                 <div class="tab__body">
                     <div class="tab__inner-body">
                         <div class="boxes-list specialists-list">
@@ -565,20 +565,24 @@
                         <!--                    <div class="add-specialist-trigger">-->
                         <!--                        <div>Book another specialist</div>-->
                         <!--                    </div>-->
-                        <div class="add-specialist-form info-box hidden">
+
+
+                        <div class="add-specialist-form info-box">
+<!--                        <div class="add-specialist-form info-box hidden">-->
+
                             <form id="add-specialist-form" class="not-action">
                                 <div class="close">X</div>
                                 <div class="add-specialist-form__header">
                                     Enter Specialist Code
                                 </div>
                                 <div class="input-row">
-                                    <input type="text" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
                                     <div class="dash"><span></span></div>
-                                    <input type="text" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
                                 </div>
                                 <button id="add-specialist-btn" class="booking-system__button">Add
                                 </button>
