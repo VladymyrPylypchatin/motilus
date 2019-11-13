@@ -37,7 +37,7 @@ class SelectSpecialistView {
                             <div class="specialist-box__avatar">
                                 <img src="./assets/img/v.png" alt="avatar">
                             </div>
-                            <div>
+                            <div class="specialist-box__name__wrap">
                                 <div class="specialist-box__name">Best Available Specialist</div>
                             </div>
         `;
@@ -55,7 +55,7 @@ class SelectSpecialistView {
                             <div class="specialist-box__avatar">
                                 <img src="./assets/img/v.png" alt="avatar">
                             </div>
-                            <div>
+                            <div class="specialist-box__name__wrap">
                                 <div class="specialist-box__name">Book another specialist</div>
                             </div>
         `;
@@ -75,7 +75,7 @@ class SelectSpecialistView {
                             <div class="specialist-box__avatar">
                                 <img src="${spec._avatar}" alt="avatar">
                             </div>
-                            <div>
+                            <div class="specialist-box__name__wrap">
                                 <div class="specialist-box__name">${spec._name}</div>
                             </div>
         `;
