@@ -20,7 +20,7 @@ class SelectSpecialistView {
         this._listElement.innerHTML = '';
         this.renderSectionTitle('Motil Match');
         this.renderGeneralSpec();
-        this.renderSectionTitle('Find A Specialist');
+        this.renderSectionTitle('Specialist Connect');
         this.renderBookAnoutherSpec();
         if(this.specilistsList.length) this.renderSectionTitle('My Specialists');
         this.specilistsList.forEach((spec) => {
@@ -38,7 +38,7 @@ class SelectSpecialistView {
                                 <img src="./assets/img/v.png" alt="avatar">
                             </div>
                             <div class="specialist-box__name__wrap">
-                                <div class="specialist-box__name">Best Available Specialist</div>
+                                <div class="specialist-box__name">Highest Rated Available Specialist</div>
                             </div>
         `;
         
@@ -56,7 +56,7 @@ class SelectSpecialistView {
                                 <img src="./assets/img/v.png" alt="avatar">
                             </div>
                             <div class="specialist-box__name__wrap">
-                                <div class="specialist-box__name">Book another specialist</div>
+                                <div class="specialist-box__name">Enter Code to Add Specialist</div>
                             </div>
         `;
         specElem.addEventListener("click", () => {

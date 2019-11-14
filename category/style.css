@@ -52,6 +52,7 @@ body {
 
 
 .menu-item {
+    font-weight: 700;
     height: 50px;
     background: black;
     color: white;
