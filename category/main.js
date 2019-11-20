@@ -93,12 +93,14 @@ class CategoryManager {
         item.classList.add("menu-item");
         if(itemObj.disabled) item.classList.add('disabled');
         item.innerHTML = `
-            <span>
-                ${itemObj.title}
-            </span>
-            <span>
-                ${!itemObj.disabled ? '$' + itemObj.price + '/hr' : 'Coming soon'}
-            </span>
+            <div class="menu-item__content">
+                <span>
+                    ${itemObj.title}
+                </span>
+                <span>
+                    ${!itemObj.disabled ? '$' + itemObj.price + '/hr' : 'Coming soon'}
+                </span>
+            </div>
         `;
         item.setAttribute('data-slug', itemObj.id);
         item.addEventListener('click', this.selectServiceHandler.bind(this));
