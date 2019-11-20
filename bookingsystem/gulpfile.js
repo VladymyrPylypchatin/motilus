@@ -123,6 +123,12 @@ gulp.task('img', function () {
             use: [pngquant()]
         })))
         .pipe(gulp.dest('dist/assets/img/'));
+        // .pipe(imagemin({
+        //     interlaced: true,
+        //     progressive: true,
+        //     svgoPlugins: [{removeViewBox: false}],
+        //     use: [pngquant()]
+        // }))
 });
 
 gulp.task('fonts', function () {
