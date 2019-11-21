@@ -104,7 +104,7 @@ gulp.task('scripts-libs', function () {
 //Browser sync
 gulp.task('browser-sync', function () {
     browserSync({ // 
-        proxy: 'http://motilus/',
+        proxy: 'http://motilus.booking/',
         port: 3000,
         notify: true // 
     });
@@ -123,6 +123,12 @@ gulp.task('img', function () {
             use: [pngquant()]
         })))
         .pipe(gulp.dest('dist/assets/img/'));
+        // .pipe(imagemin({
+        //     interlaced: true,
+        //     progressive: true,
+        //     svgoPlugins: [{removeViewBox: false}],
+        //     use: [pngquant()]
+        // }))
 });
 
 gulp.task('fonts', function () {

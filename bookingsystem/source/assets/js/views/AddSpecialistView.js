@@ -38,7 +38,7 @@ class AddSpecialistView {
 
     inputKeyHendler(e){
         let t = isNaN(e.key);
-
+        console.log(e);
         if(e.code == 'Space'){
             e.preventDefault();
         }

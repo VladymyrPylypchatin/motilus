@@ -477,7 +477,7 @@ body{
     transition: all 250ms ease-in-out;
 }
 .navigation-item.active{
-    color: rgba(0, 13, 255, 1);
+    color: rgba(0,0,0,1);
 }
 .navigation-item:not(.active):hover{
     color: black;

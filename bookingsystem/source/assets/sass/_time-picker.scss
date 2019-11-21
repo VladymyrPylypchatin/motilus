@@ -1,11 +1,19 @@
 .time-picker {
   margin-bottom: 40px;
+  //border:1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &__container {
     display: flex;
     justify-content: center;
     align-items: stretch;
     user-select: none;
+    //border:1px solid grey;
+    width: max-content;
+    position: relative;
   }
 
   &__section {
@@ -56,6 +64,11 @@
 }
 
 .time-picker__select {
+  //border:1px solid green;
+  position: absolute;
+  height: 100%;
+  right: -55px;
+  top:0px;
   width: 40px;
   display: flex;
   align-items: center;

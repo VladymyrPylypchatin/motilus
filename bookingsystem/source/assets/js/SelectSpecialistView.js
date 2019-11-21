@@ -18,8 +18,11 @@ class SelectSpecialistView {
     }
     renderList() {
         this._listElement.innerHTML = '';
+        this.renderSectionTitle('Motil Match');
         this.renderGeneralSpec();
+        this.renderSectionTitle('Specialist Connect');
         this.renderBookAnoutherSpec();
+        if(this.specilistsList.length) this.renderSectionTitle('My Specialists');
         this.specilistsList.forEach((spec) => {
             this.renderSpecialist(spec);
         });
@@ -34,8 +37,8 @@ class SelectSpecialistView {
                             <div class="specialist-box__avatar">
                                 <img src="./assets/img/v.png" alt="avatar">
                             </div>
-                            <div>
-                                <div class="specialist-box__name">Best Available Specialist</div>
+                            <div class="specialist-box__name__wrap">
+                                <div class="specialist-box__name">Highest Rated Available Specialist</div>
                             </div>
         `;
         
@@ -52,8 +55,8 @@ class SelectSpecialistView {
                             <div class="specialist-box__avatar">
                                 <img src="./assets/img/v.png" alt="avatar">
                             </div>
-                            <div>
-                                <div class="specialist-box__name">Book another specialist</div>
+                            <div class="specialist-box__name__wrap">
+                                <div class="specialist-box__name">Enter Code to Add Specialist</div>
                             </div>
         `;
         specElem.addEventListener("click", () => {
@@ -72,7 +75,7 @@ class SelectSpecialistView {
                             <div class="specialist-box__avatar">
                                 <img src="${spec._avatar}" alt="avatar">
                             </div>
-                            <div>
+                            <div class="specialist-box__name__wrap">
                                 <div class="specialist-box__name">${spec._name}</div>
                             </div>
         `;
@@ -80,6 +83,12 @@ class SelectSpecialistView {
         this._listElement.appendChild(specElem);
     }
 
+    renderSectionTitle(text) {
+        const title = document.createElement('div');
+        title.classList.add('boxes-list__section-header');
+        title.innerHTML = text;
+        this._listElement.appendChild(title);
+    }
     specClickHandler(event) {
         const specId = event.currentTarget.getAttribute("data-address");
         this._listElement.querySelectorAll('.address-box').forEach(box => box.classList.remove("boxes-list__item_active"));

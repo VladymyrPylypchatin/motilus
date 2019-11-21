@@ -16,8 +16,17 @@
     }
 
     &__name{
-        font-weight: bold;
+        font-weight: normal;
+        //height: 100%;
+        //display: flex;
+        align-items: center;
+
     }
+}
+
+.specialist-box__name__wrap{
+    display: flex;
+    align-items: center;
 }
 
 .specialists-list{
