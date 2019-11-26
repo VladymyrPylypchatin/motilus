@@ -10,6 +10,7 @@
         height: 50px;
         border-radius: 50%;
         overflow: hidden;
+        object-fit: contain;
         img {
             height: 100%;
         }
@@ -27,6 +28,7 @@
 .specialist-box__name__wrap{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .specialists-list{
@@ -39,3 +41,18 @@
     }
 }
 
+.specialist-box__rating {
+    display: grid;
+    grid-template-columns: 20px auto;
+    column-gap: 10px;
+
+    .star {
+        height: 20px;
+        width: 20px;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

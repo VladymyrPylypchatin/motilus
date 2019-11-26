@@ -1,6 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="assets/css/main.css?v=42">
+<link rel="stylesheet" href="assets/css/main.css?v=45">
 
 <body>
     <div class="booking-system">
@@ -522,23 +522,23 @@
                             <!--
                             </div>-->
 
-<!--                            <div class="boxes-list__item specialist-box">-->
-<!--                                <div class="specialist-box__avatar">-->
-<!--                                    <img src="./assets/img/v.png" alt="avatar">-->
-<!--                                </div>-->
-<!--                                <div class="specialist-box__name__wrap">-->
-<!--                                    <div class="specialist-box__name">Book another specialist</div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="boxes-list__section-header">My Specialist</div>-->
-<!--                            <div class="boxes-list__item specialist-box">-->
-<!--                                <div class="specialist-box__avatar">-->
-<!--                                    <img src="./assets/img/v.png" alt="avatar">-->
-<!--                                </div>-->
-<!--                                <div class="specialist-box__name__wrap">-->
-<!--                                    <div class="specialist-box__name">Book another specialist</div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <!--                            <div class="boxes-list__item specialist-box">-->
+                            <!--                                <div class="specialist-box__avatar">-->
+                            <!--                                    <img src="./assets/img/v.png" alt="avatar">-->
+                            <!--                                </div>-->
+                            <!--                                <div class="specialist-box__name__wrap">-->
+                            <!--                                    <div class="specialist-box__name">Book another specialist</div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <!--                            <div class="boxes-list__section-header">My Specialist</div>-->
+                            <!--                            <div class="boxes-list__item specialist-box">-->
+                            <!--                                <div class="specialist-box__avatar">-->
+                            <!--                                    <img src="./assets/img/v.png" alt="avatar">-->
+                            <!--                                </div>-->
+                            <!--                                <div class="specialist-box__name__wrap">-->
+                            <!--                                    <div class="specialist-box__name">Book another specialist</div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
 
 
                             <!--                        <div class="boxes-list__item  boxes-list__item_active specialist-box">-->
@@ -550,15 +550,22 @@
                             <!--                                <div class="specialist-box__description">Service Provider</div>-->
                             <!--                            </div>-->
                             <!--                        </div>-->
-                            <!--                        <div class="boxes-list__item  boxes-list__item_active specialist-box">-->
-                            <!--                            <div class="specialist-box__avatar">-->
-                            <!--                                <img src="./assets/img/user.svg" alt="avatar">-->
-                            <!--                            </div>-->
-                            <!--                            <div>-->
-                            <!--                                <div class="specialist-box__name">Mark Scalise</div>-->
-                            <!--                                <div class="specialist-box__description">Service Provider</div>-->
-                            <!--                            </div>-->
-                            <!--                        </div>-->
+                            <!-- <div class="boxes-list__item specialist-box">
+                                <div class="specialist-box__avatar">
+                                    <img src="${spec._avatar}" alt="avatar">
+                                </div>
+                                <div class="specialist-box__name__wrap">
+                                    <div class="specialist-box__name">${spec._name}</div>
+                                    <div class="specialist-box__rating">
+                                        <div class="start">
+                                            <img src="./assets/img/star.svg" alt="star">
+                                        </div>
+                                        <div class="rating">
+                                            4.7
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
 
 
                         </div>
@@ -567,7 +574,7 @@
                         <!--                    </div>-->
 
 
-<!--                        <div class="add-specialist-form info-box">-->
+                        <!--                        <div class="add-specialist-form info-box">-->
                         <div class="add-specialist-form info-box hidden">
 
                             <form id="add-specialist-form" class="not-action">
@@ -576,13 +583,19 @@
                                     Enter Specialist Code
                                 </div>
                                 <div class="input-row">
-                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off"
+                                        maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off"
+                                        maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off"
+                                        maxlength="1">
                                     <div class="dash"><span></span></div>
-                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
-                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off" maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off"
+                                        maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off"
+                                        maxlength="1">
+                                    <input type="text" inputmode="numeric" tabindex="-1" autocomplete="off"
+                                        maxlength="1">
                                 </div>
                                 <button id="add-specialist-btn" class="booking-system__button">Add
                                 </button>
@@ -598,7 +611,7 @@
     <script id="stripe" src="https://js.stripe.com/v3/"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjBX_9vaaJlURp0ekst2J_nQl-2GvU7Oc&libraries=places"></script>
-    <script src="assets/js/main.min.js?v=51"></script>
+    <script src="assets/js/main.min.js?v=56"></script>
 
     <script>
     // document.addEventListener('keydown', (event) => {

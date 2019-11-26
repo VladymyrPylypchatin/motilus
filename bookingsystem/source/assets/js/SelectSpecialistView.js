@@ -22,13 +22,13 @@ class SelectSpecialistView {
         this.renderGeneralSpec();
         this.renderSectionTitle('Specialist Connect');
         this.renderBookAnoutherSpec();
-        if(this.specilistsList.length) this.renderSectionTitle('My Specialists');
+        if (this.specilistsList.length) this.renderSectionTitle('My Specialists');
         this.specilistsList.forEach((spec) => {
             this.renderSpecialist(spec);
         });
 
     }
-    renderGeneralSpec(){
+    renderGeneralSpec() {
         let specElem = document.createElement("div");
         specElem.classList.add("boxes-list__item");
         specElem.classList.add("specialist-box");
@@ -41,12 +41,12 @@ class SelectSpecialistView {
                                 <div class="specialist-box__name">Highest Rated Available Specialist</div>
                             </div>
         `;
-        
+
         specElem.addEventListener("click", this.specClickHandler.bind(this));
         this._listElement.appendChild(specElem);
     }
 
-    renderBookAnoutherSpec(){
+    renderBookAnoutherSpec() {
         let specElem = document.createElement("div");
         specElem.classList.add("boxes-list__item");
         specElem.classList.add("specialist-box");
@@ -77,6 +77,14 @@ class SelectSpecialistView {
                             </div>
                             <div class="specialist-box__name__wrap">
                                 <div class="specialist-box__name">${spec._name}</div>
+                                <div class="specialist-box__rating">
+                                    <div class="start">
+                                        <img src="./assets/img/star.svg" alt="star">
+                                    </div>
+                                    <div class="rating">
+                                         ${spec.rating ? parseFloat(spec.rating).toFixed(1) : '0'}
+                                    </div>
+                                </div>
                             </div>
         `;
         specElem.addEventListener("click", this.specClickHandler.bind(this));
