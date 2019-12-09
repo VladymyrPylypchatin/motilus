@@ -46,6 +46,7 @@ class TimePickerView {
             this.selectSmaller.classList.add('SmallerNone');
         }
 
+        this.setDuration();
         console.log(this.countTime);
     }
 
@@ -70,6 +71,7 @@ class TimePickerView {
             this._hours.innerHTML = pad(hours,2) ;
             this._minutes.innerHTML = "00";
         }
+        this.setDuration();
         console.log(this.countTime);
     }
 
