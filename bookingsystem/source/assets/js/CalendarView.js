@@ -212,8 +212,13 @@ class CalendarView{
         }, 300);
     }
 
+    hideWarningBlock() {
+        this._avalibelity.classList.add("hidden");
+    }
+
     reinit() {
         this.hideSelectedTimeBlock();
+        this.hideWarningBlock();
         this._tabAPI.hideButton();
         this._tabAPI.enableButton();
         this.render();
@@ -230,8 +235,6 @@ function toPeriodFormat(date) {
   
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
-    console.log("US TIme");
-    console.log(strTime);
     return strTime;
   }
 

@@ -130,20 +130,16 @@ class Tab {
     }
 
     enableTabActions() {
-        console.log("tabable elements");
         this._interactiveElements.forEach(element => {
             if(!element.classList.contains('disabled') && !element.classList.contains('hidden'))
                 element.setAttribute('tabindex', '0');
-            console.log(element);
         });
     }
 
     disableTabActions() {
-        console.log("disable tabable elements");
         this._interactiveElements.forEach(element => {
             element.blur();
             element.setAttribute('tabindex', '-1');
-            console.log(element);
         });
     }
 }

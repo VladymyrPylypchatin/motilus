@@ -9,11 +9,10 @@ class TabServiceDuration extends Tab {
 
     run(args) {
         if( !this.isInited) {
-            this._args = args;
             this.listen();
             this.isInited = true;
         }
-
+        if(args) this._args = args;
         console.dir("TabServiceDuration");
         this.enableBackButton();
     }

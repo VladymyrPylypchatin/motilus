@@ -56,7 +56,6 @@ class BookingView{
 
     hideLodaer(){
         this._mainLoader.classList.add("hidden");
-        console.dir("loader hidded");
     }
 
     //Preload data of the next slide before animaton
@@ -70,6 +69,7 @@ class BookingView{
     
     async slideNext(params){
         //End loading animation
+        
         await this.finishLoading();
 
         this._activeTabIndex++;
@@ -137,7 +137,9 @@ class BookingView{
 
     async slideBack() {
         console.dir(this.navHistory);
+        
         if(this.navHistory.length != 1) {
+            this._activeTabIndex--;
             const prevTab = this.navHistory.pop();
             
             this._activeTab.disableRight();
