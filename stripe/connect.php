@@ -3,8 +3,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-  define('CLIENT_ID', 'ca_EmzVBqWKyDHHTLluXvVymBXMDLsGJJK0');
-  define('API_KEY', 'sk_test_HPSljUqHxj1nYkqcwV5mzUwS002v5JNm0E');
+  define('CLIENT_ID', 'ca_EmzVoielLenakb0J3VIA5Ozrzuc64VjV');
+  define('API_KEY', 'sk_live_s1rgJYQKDw5vbRzDltD7Hjrs00H8N2Yuwe');
   define('TOKEN_URI', 'https://connect.stripe.com/oauth/token');
   define('AUTHORIZE_URI', 'https://connect.stripe.com/oauth/authorize');
 
@@ -25,8 +25,11 @@ error_reporting(E_ALL);
       $respCode = curl_getinfo($req, CURLINFO_HTTP_CODE);
       $resp = curl_exec($req);
        curl_close($req);
-    
-      echo $resp;
+           
+       $responseObject = json_decode($resp);
+       $userId = $responseObject->stripe_user_id;
+       header("Location: https://www.motil.us/specialist/myaccount?code=" . $userId);
+      // echo $responseObject.stripe_user_id;
     //echo $resp;
    
   } else if (isset($_GET['error'])) { // Error

@@ -79,7 +79,9 @@ gulp.task('scripts', function () {
         'source/assets/js/main.js'
     ])
     .pipe(concat('main.min.js'))
-    .pipe(babel())
+    .pipe(babel({
+        plugins: ['@babel/plugin-proposal-optional-chaining']
+    }))
     .pipe(browserify({
         insertGlobals : true,
       }))

@@ -55,10 +55,10 @@ class RegistrationView {
         
         // //Validation of whole address
         if(Validator.isFiled(this._address)){
-            if(!await Validator.validateAddress(this.addressAutocomplete.getPlace().formatted_address)){
+            if(!await Validator.validateAddress(this.addressAutocomplete.getPlace()?.formatted_address)){
                 errors.push("Please check your address. It is incorrect or not accurate enough.");
             } else {
-                if(!await Validator.validateGeofencing(this.addressAutocomplete.getPlace().formatted_address)){
+                if(!await Validator.validateGeofencing(this.addressAutocomplete.getPlace()?.formatted_address)){
                     errors.push("Oops... It seems that we can't provide services in this area");
                 }
             }
@@ -93,7 +93,7 @@ class RegistrationView {
     }
 
     getUserInfoObject() {
-        const place = this.addressAutocomplete.getPlace().address_components;
+        const place = this.addressAutocomplete.getPlace()?.address_components;
         let addressStr = getAddressPartValue(place, 'street_number') + " " + getAddressPartValue(place, 'route');
         if(this._aptNumber) addressStr += " #" + this._aptNumber;
         
